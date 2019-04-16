@@ -57,6 +57,7 @@ tdl.require('tdl.programs');
 tdl.require('tdl.textures');
 tdl.require('tdl.webgl');
 window.onload = initialize;
+// document.body.style.backgroundColor = "white";
 
 
 
@@ -282,12 +283,49 @@ function initialize() {
     if (averageCount < 19000)
       console.log(averageCount,testcount);
     app.update(elapsedTime);
-    app.render(); 
-    if(testcount == 200)
+    app.render();
+    var n = 300 ;
+    if(testcount == n)
     appendiframe();
-    if(testcount == 400){
+    if(testcount == 2 * n){
       var iframe = document.getElementsByTagName('iframe')[0];
       iframe.src = "https://world.taobao.com/";
+    }
+    if(testcount == 3 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.wikipedia.org/";
+    }
+    if(testcount == 4 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.qq.com/";
+    }
+    if(testcount == 5 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.tmall.com/";
+    }
+    if(testcount == 6 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "http://www.sohu.com/";
+    }
+    if(testcount == 7 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://corporate.jd.com/home/";
+    }
+    if(testcount == 8 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.weibo.com/us";
+    }
+    if(testcount == 9 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.360.cn/";
+    }
+    if(testcount == 10 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://login.tmall.com/";
+    }
+    if(testcount == 11 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.blogger.com/about/?r=1-null_user";
     }
       
   }
