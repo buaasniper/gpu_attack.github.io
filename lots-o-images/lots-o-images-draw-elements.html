@@ -280,7 +280,7 @@ function initialize() {
     resultElem.innerHTML = Math.round( 1 / (averageCount * fpsTimer.averageFPS / 40000) * 100000);
     // console.log(resultElem.innerHTML);
     testcount++;
-    if ( (testcount <= 1500) )
+    if ( (testcount <= 1500) && (testcount % 5 == 0) )
       console.log(resultElem.innerHTML,testcount);
     app.update(elapsedTime);
     app.render();
