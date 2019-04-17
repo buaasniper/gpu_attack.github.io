@@ -289,11 +289,11 @@ function initialize() {
     appendiframe();
     if(testcount == 2 * n){
       var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.baidu.com";
+      iframe.src = "https://world.taobao.com/";
     }
     if(testcount == 3 * n){
       var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.baidu.com";
+      iframe.src = "https://world.taobao.com/";
     }
     // if(testcount == 2 * n){
     //   var iframe = document.getElementsByTagName('iframe')[0];
@@ -361,7 +361,7 @@ function initialize() {
 var appendiframe = function(){
   var iframe = document.createElement('iframe');
   iframe.style = "width: 100%; height: 50%;";
-  iframe.src = "https://www.baidu.com";
+  iframe.src = "https://world.taobao.com/";
   document.body.appendChild(iframe);
   var y = (iframe.contentWindow || iframe.contentDocument);
   if (y.document)
