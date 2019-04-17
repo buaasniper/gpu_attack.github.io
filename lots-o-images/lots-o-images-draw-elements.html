@@ -280,7 +280,7 @@ function initialize() {
     resultElem.innerHTML = Math.round( 1 / (averageCount * fpsTimer.averageFPS / 40000) * 100000);
     // console.log(resultElem.innerHTML);
     testcount++;
-    if ( (testcount <= 1200) )
+    if ( (testcount <= 1500) )
       console.log(resultElem.innerHTML,testcount);
     app.update(elapsedTime);
     app.render();
@@ -292,6 +292,10 @@ function initialize() {
       iframe.src = "https://world.taobao.com/";
     }
     if(testcount == 3 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://world.taobao.com/";
+    }
+    if(testcount == 4 * n){
       var iframe = document.getElementsByTagName('iframe')[0];
       iframe.src = "https://world.taobao.com/";
     }
