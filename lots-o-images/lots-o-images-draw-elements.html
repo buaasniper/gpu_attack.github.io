@@ -277,10 +277,10 @@ function initialize() {
     g_numImages = Math.min(g_maxImages, count);
 
     cntElem.innerHTML = averageCount;
-    resultElem.innerHTML = Math.round(averageCount / 30000 * (1 / fpsTimer.averageFPS ) * 100000);
+    resultElem.innerHTML = Math.round( 1 / (averageCount * fpsTimer.averageFPS / 40000) * 100000);
     // console.log(resultElem.innerHTML);
     testcount++;
-    if ( (testcount <= 600) )
+    if ( (testcount <= 900) )
       console.log(resultElem.innerHTML,testcount);
     app.update(elapsedTime);
     app.render();
