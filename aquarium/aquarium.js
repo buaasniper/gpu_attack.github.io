@@ -1622,7 +1622,7 @@ function initialize() {
       gl.enable(gl.CULL_FACE);
       gl.depthMask(true);
     }
-
+    console.log(count++);
     // Set the alpha to 255.
     gl.colorMask(false, false, false, true);
     gl.clearColor(0,0,0,1);
@@ -1631,6 +1631,7 @@ function initialize() {
     // turn off logging after 1 frame.
     g_logGLCalls = false;
   }
+  var count = 0;
 
   function renderStereo(leftProjectionMatrix, rightProjectionMatrix, viewInverseMatrix, pose) {
     if (useMultiviewForStereo()) {
