@@ -857,6 +857,7 @@ function advanceViewSettings() {
 /**
  * Sets the count
  */
+var x_time;
 function setSetting(elem, id) {
   g_numSettingElements[id] = elem;
   setSettings({globals:{fishSetting:id}});
@@ -877,6 +878,8 @@ function main() {
   //canvas = WebGLDebugUtils.makeLostContextSimulatingCanvas(canvas);
   // tell the simulator when to lose context.
   //canvas.loseContextInNCalls(1500);
+
+  x_time = performance.now();
 
   tdl.webgl.registerContextLostHandler(canvas, handleContextLost);
   tdl.webgl.registerContextRestoredHandler(canvas, handleContextRestored);
@@ -917,6 +920,7 @@ function handleContextRestored() {
 function initialize() {
   if (g_query.numFish) {
     g_numFish[0] = parseInt(g_query.numFish);
+    console.log(g_numFish[0]);
   }
   if (g_query.canvasWidth) {
     g.globals.width = parseInt(g_query.canvasWidth);
@@ -1622,7 +1626,7 @@ function initialize() {
       gl.enable(gl.CULL_FACE);
       gl.depthMask(true);
     }
-    console.log(count++);
+    // console.log(count++);
     // Set the alpha to 255.
     gl.colorMask(false, false, false, true);
     gl.clearColor(0,0,0,1);
@@ -1631,7 +1635,7 @@ function initialize() {
     // turn off logging after 1 frame.
     g_logGLCalls = false;
   }
-  var count = 0;
+  // var count = 0;
 
   function renderStereo(leftProjectionMatrix, rightProjectionMatrix, viewInverseMatrix, pose) {
     if (useMultiviewForStereo()) {
@@ -1749,9 +1753,17 @@ function initialize() {
     }
 
     frameCount++;
+    console.log(frameCount);
 
     g_fpsTimer.update(elapsedTime);
     fpsElem.innerHTML = g_fpsTimer.averageFPS;
+    console.log(elapsedTime);
+    var x2_time = performance.now();
+    console.log(x2_time - x_time);
+    x_time = x2_time;
+    
+
+    
 
     // If we are running > 40hz then turn on a few more options.
     if (setPretty && g_fpsTimer.averageFPS > 40) {
