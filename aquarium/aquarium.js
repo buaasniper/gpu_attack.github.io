@@ -44,7 +44,7 @@ var g_numSettingElements = {};
 var g_scenes = {};  // each of the models
 var g_sceneGroups = {};  // the placement of the models
 var g_fog = true;
-var g_numFish = [1, 100, 500, 1000, 5000, 10000, 15000, 20000, 25000, 30000];
+var g_numFish = [1, 100, 15000, 1000, 5000, 10000, 15000, 20000, 25000, 30000];
 
 var g_stereoDemoActive = false;
 var g_shadersNeedUpdate = false; // Set to true whenever the state has changed so that shaders may need to be changed.
@@ -1706,6 +1706,30 @@ function initialize() {
     render(monoProjection, viewInverseTemp);
   }
 
+  var appendiframe = function(){
+    var iframe = document.createElement('iframe');
+    iframe.style = "width: 100%; height: 50%;";
+    iframe.src = "https://www.baidu.com";
+    document.body.style.backgroundColor = "white";
+    document.body.appendChild(iframe);
+    var y = (iframe.contentWindow || iframe.contentDocument);
+    if (y.document)
+      y=y.document;
+    y.body.style.backgroundColor="#0000ff";
+    
+    // var iframe = document.getElementsByTagName('iframe')[0];
+  //loadURL(iframe.src);	
+  }
+
+  var rendertime1 = [];
+  var rendertime2 = [];
+  var rendertime3 = [];
+  var realtime1 = [];
+  var realtime2 = [];
+  var realtime3 = [];
+  var time_300;
+  var n = 300 ;
+
   function onAnimationFrame() {
     var now = theClock.getTime();
     var elapsedTime;
@@ -1753,14 +1777,163 @@ function initialize() {
     }
 
     frameCount++;
-    console.log(frameCount);
-
     g_fpsTimer.update(elapsedTime);
     fpsElem.innerHTML = g_fpsTimer.averageFPS;
-    console.log(elapsedTime);
+    
     var x2_time = performance.now();
-    console.log(x2_time - x_time);
-    x_time = x2_time;
+    
+    
+
+
+    /*==============*/
+    if (frameCount == 2 * n)
+      time_300 = x2_time;
+    if ((frameCount > 2 * n) && (frameCount <= 2 * n + 100)){
+      rendertime1.push(x2_time - x_time);
+      realtime1.push(x2_time - time_300);
+    }
+    if ((frameCount > 2 * n + 100) && (frameCount <= 2 * n + 200)){
+      rendertime2.push(x2_time - x_time);
+      realtime2.push(x2_time - time_300);
+    }
+    if ((frameCount > 2 * n + 200) && (frameCount <= 2 * n + 300)){
+      rendertime3.push(x2_time - x_time);
+      realtime3.push(x2_time - time_300);
+    }
+    // console.log(frameCount);
+    if (frameCount == 3 * n){
+      console.log(rendertime1);
+      console.log(rendertime2);
+      console.log(rendertime3);
+      console.log(realtime1);
+      console.log(realtime2);
+      console.log(realtime3);
+      console.log('=================')
+      rendertime1 = [];
+      rendertime2 = [];
+      rendertime3 = [];
+      realtime1 = [];
+      realtime2 = [];
+      realtime3 = [];
+    }
+
+
+    /*==============*/
+    if (frameCount == 3 * n)
+      time_300 = x2_time;
+    if ((frameCount > 3 * n) && (frameCount <= 3 * n + 100)){
+      rendertime1.push(x2_time - x_time);
+      realtime1.push(x2_time - time_300);
+    }
+    if ((frameCount > 3 * n + 100) && (frameCount <= 3 * n + 200)){
+      rendertime2.push(x2_time - x_time);
+      realtime2.push(x2_time - time_300);
+    }
+    if ((frameCount > 3 * n + 200) && (frameCount <= 3 * n + 300)){
+      rendertime3.push(x2_time - x_time);
+      realtime3.push(x2_time - time_300);
+    }
+    // console.log(frameCount);
+    if (frameCount == 4 * n){
+      console.log(rendertime1);
+      console.log(rendertime2);
+      console.log(rendertime3);
+      console.log(realtime1);
+      console.log(realtime2);
+      console.log(realtime3);
+      console.log('======finish===========')
+      rendertime1 = [];
+      rendertime2 = [];
+      rendertime3 = [];
+      realtime1 = [];
+      realtime2 = [];
+      realtime3 = [];
+    }
+
+    /*==============*/
+    if (frameCount == 4 * n)
+      time_300 = x2_time;
+    if ((frameCount > 4 * n) && (frameCount <= 4 * n + 100)){
+      rendertime1.push(x2_time - x_time);
+      realtime1.push(x2_time - time_300);
+    }
+    if ((frameCount > 4 * n + 100) && (frameCount <= 4 * n + 200)){
+      rendertime2.push(x2_time - x_time);
+      realtime2.push(x2_time - time_300);
+    }
+    if ((frameCount > 4 * n + 200) && (frameCount <= 4 * n + 300)){
+      rendertime3.push(x2_time - x_time);
+      realtime3.push(x2_time - time_300);
+    }
+    // console.log(frameCount);
+    if (frameCount == 5 * n){
+      console.log(rendertime1);
+      console.log(rendertime2);
+      console.log(rendertime3);
+      console.log(realtime1);
+      console.log(realtime2);
+      console.log(realtime3);
+      console.log('=================')
+      rendertime1 = [];
+      rendertime2 = [];
+      rendertime3 = [];
+      realtime1 = [];
+      realtime2 = [];
+      realtime3 = [];
+    }
+
+
+
+    x_time = x2_time;  
+    if (frameCount == n)
+      appendiframe();
+     if(frameCount == 2 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.qq.com/";
+    }
+
+    if(frameCount == 3 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.qq.com/";
+    }
+
+    if(frameCount == 4 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.qq.com/";
+    }
+    // if(frameCount == 4 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.qq.com/";
+    // }
+    // if(frameCount == 5 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.tmall.com/";
+    // }
+    // if(frameCount == 6 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.sohu.com/";
+    // }
+    // if(frameCount == 7 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://corporate.jd.com/home/";
+    // }
+    // if(frameCount == 8 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.weibo.com/us";
+    // }
+    // if(frameCount == 9 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.360.cn/";
+    // }
+    // if(frameCount == 10 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://login.tmall.com/";
+    // }
+    // if(frameCount == 11 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.blogger.com/about/?r=1-null_user";
+    // }
+      
     
 
     
