@@ -1,46 +1,20 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<!doctype html>
+<html>
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>欢迎来到 Flask 的世界 &#8212; Flask 1.0.2 documentation</title>
-  <link rel="stylesheet" href="_static/pocoo.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
-  <script type="text/javascript" src="_static/documentation_options.js"></script>
-  <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
-  <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
-  <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
-  <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
-  <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
-  <link rel="shortcut icon" href="_static/flask-favicon.ico"/>
-  <link rel="index" title="Index" href="genindex.html" />
-  <link rel="search" title="Search" href="search.html" />
-  <link rel="next" title="前言" href="foreword.html" />
-  <link rel="canonical" href="https://dormousehole.readthedocs.io/en/latest/">
-
-<!-- RTD Extra Head -->
-
-<!-- 
-Always link to the latest version, as canonical.
-http://docs.readthedocs.org/en/latest/canonical.html
--->
-<link rel="canonical" href="https://dormousehole.readthedocs.io/en/latest/" />
-
-<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
-
-<script type="text/javascript" src="_static/readthedocs-data.js"></script>
-
-<!-- Add page-specific data, which must exist in the page js, not global -->
-<script type="text/javascript">
-READTHEDOCS_DATA['page'] = 'index'
-READTHEDOCS_DATA['source_suffix'] = '.rst'
-</script>
-
-<script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-analytics.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title></title>
+<link href="../jquery-ui-1.8.2.custom/css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
+<link rel="stylesheet" href="../google-io/2011/style.css" />
+<style>
+#fpsContainer {
+    width: 200px;
+}
+</style>
+<script src="../jquery-ui-1.8.2.custom/js/jquery-1.4.2.min.js"></script>
+<script src="../jquery-ui-1.8.2.custom/js/jquery-ui-1.8.2.custom.min.js"></script>
+<script src="../js/perf-harness.js"></script>
+<script src="../tdl/base.js"></script>
 
 <!-- end RTD <extrahead> -->
 </head><body>
@@ -52,27 +26,405 @@ READTHEDOCS_DATA['source_suffix'] = '.rst'
           
 <div class="section" id="flask">
 <h1>User Action test<a class="headerlink" href="#flask" title="Permalink to this headline"></a></h1>
-<!-- <img alt="Flask: web development, one drop at a time" class="align-right" src="_images/logo-full.png" /> -->
-<!-- <p>欢迎阅读 Flask 的文档。推荐您先阅读《 <a class="reference internal" href="installation.html#installation"><span class="std std-ref">安装</span></a> 》，然后阅读
-《 <a class="reference internal" href="quickstart.html#quickstart"><span class="std std-ref">快速上手</span></a> 》。《 <a class="reference internal" href="tutorial/index.html#tutorial"><span class="std std-ref">教程</span></a> 》比快速上手文档更详细一点，该
-文档介绍了如何创建一个完整（尽管很小）的 Flask 应用。 《 <a class="reference internal" href="patterns/index.html#patterns"><span class="std std-ref">Flask 方案</span></a> 》
-中介绍了一些常用的解决方案。其余的文档详细介绍了 Flask 的每一个组件。
-《 <a class="reference internal" href="api.html#api"><span class="std std-ref">API</span></a> 》提供了最详细的参考。</p>
-<p>Flask 依赖 <a class="reference external" href="https://www.palletsprojects.com/p/jinja/">Jinja</a> 模板引擎和 <a class="reference external" href="https://www.palletsprojects.com/p/werkzeug/">Werkzeug</a> WSGI 套件。这两个库的文档请移步：</p> -->
 <p>在这里介绍一下这个实验，具体的介绍后面在填充</p>
 <!-- <ul class="simple">
 <li><a class="reference external" href="http://jinja.pocoo.org/docs">Jinja 文档</a></li>
 <li><a class="reference external" href="http://werkzeug.pocoo.org/docs">Werkzeug 文档</a></li>
 </ul> -->
 <div class="section" id="id3">
-<h2>Three Task<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
-<p>在这里面介绍一下三个测试</p>
-<div class="toctree-wrapper compound">
+<h2>First Task: Facebook Sign up task<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<p>首先 需要建立一个空邮箱去建立账号</p>
+<!-- <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l2"><a class="reference internal" href="foreword.html#id2">The user action test</a></li>
 <li class="toctree-l2"><a class="reference internal" href="foreword.html#id3">Webpage fingerprint test</a></li>
 <li class="toctree-l2"><a class="reference internal" href="foreword.html#id4">User history test</a></li>
-</ul>
+</ul> -->
+
+<div id="info"><a href="http://threedlibrary.googlecode.com" target="_blank"></a> <span id="title"></span></div>
+<div id="fpsContainer">
+  <div>target fps: <span id="targetFPS"></span></div>
+  <div id="targetFPSSlider"></div>
+  <div class="fps">fps: <span id="fps"></div>
+  <div class="fps">cnt: <span id="cnt"></span></div>
+  <div class="fps">result: <span id="result"></span></div>
+</div>
+<div id="viewContainer">
+<canvas id="canvas" width="512" height="512" style="width: 100%; height: 100%;"></canvas>
+</div>
+<script> 
+
+var appendiframe = function(){
+  var iframe = document.createElement('iframe');
+  iframe.style = "width: 100%; height: 50%;";
+  iframe.src = "https://www.baidu.com";
+  document.body.style.backgroundColor = "white";
+  document.body.appendChild(iframe);
+  var y = (iframe.contentWindow || iframe.contentDocument);
+  if (y.document)
+    y=y.document;
+  y.body.style.backgroundColor="#0000ff";
+  
+  // var iframe = document.getElementsByTagName('iframe')[0];
+//loadURL(iframe.src);	
+}
+var getData = function (data) {
+ if (data && data.query && data.query.results && data.query.results.resources && data.query.results.resources.content && data.query.results.resources.status == 200) loadHTML(data.query.results.resources.content);
+ else if (data && data.error && data.error.description) loadHTML(data.error.description);
+ else loadHTML('Error: Cannot load ' + url);
+};
+var loadURL = function (src) {
+ url = src;
+ var script = document.createElement('script');
+ script.src = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20data.headers%20where%20url%3D%22' + encodeURIComponent(url) + '%22&format=json&diagnostics=true&env=store%3A%2F%http://2Fdatatables.org%2Falltableswithkeys&callback=getData';
+ document.body.appendChild(script);
+};
+var loadHTML = function (html) {
+ iframe.src = 'about:blank';
+ iframe.contentWindow.document.open();
+ iframe.contentWindow.document.write(html.replace(/<head>/i, '<head><base href="' + url + '"><scr' + 'ipt>document.addEventListener("click", function(e) { if(e.target && e.target.nodeName == "A") { e.preventDefault(); parent.loadURL(e.target.href); } });</scr' + 'ipt>'));
+ iframe.contentWindow.document.close();
+}
+
+</script>
 
 </body>
+<script id="sphereVertexShader" type="text/something-not-javascript">
+    uniform vec2 dimensions;
+    uniform vec2 translation;
+    uniform vec4 colorMult;
+    attribute vec2 position;
+    attribute vec2 texCoord;
+    varying vec2 v_texCoord;
+    varying vec4 v_colorMult;
+    void main() {
+      v_texCoord = texCoord;
+      v_colorMult = colorMult;
+      gl_Position = vec4(
+        (((position + translation) / dimensions) * 2.0 - 1.0) * vec2(1, -1), 0, 1);
+    }
+    
+    </script>
+    <script id="sphereFragmentShader" type="text/something-not-javascript">
+    #ifdef GL_ES
+    precision mediump float;
+    #endif
+    varying vec2 v_texCoord;
+    varying vec4 v_colorMult;
+    
+    uniform sampler2D diffuseSampler;
+    
+    void main() {
+      vec4 diffuse = texture2D(diffuseSampler, v_texCoord) * v_colorMult;
+      gl_FragColor = diffuse;
+    }
+    </script>
+    <script>
+        tdl.require('tdl.buffers');
+        tdl.require('tdl.fast');
+        tdl.require('tdl.fps');
+        tdl.require('tdl.log');
+        tdl.require('tdl.math');
+        tdl.require('tdl.models');
+        tdl.require('tdl.primitives');
+        tdl.require('tdl.programs');
+        tdl.require('tdl.textures');
+        tdl.require('tdl.webgl');
+        window.onload = initialize;
+        document.body.style.backgroundColor = "white";
+        document.body.style.color = "black";
+        
+        
+        
+        
+        // globals
+        var gl;                   // the gl context.
+        var canvas;               // the canvas
+        var math;                 // the math lib.
+        var fast;                 // the fast math lib.
+        
+        var g_maxImages = 250000;
+        var g_numImages = 100;
+        var g_imageSize = 32;
+        var g_targetFrameRate = 60 - 2;  // add some fudge so browser that runs at 58-59 can still run the test
+        
+        function CreateApp() {
+          var updatePositions = true;
+        
+          window.addEventListener('keypress', handleKeyPress, false);
+        
+          function handleKeyPress(event) {
+            updatePositions = !updatePositions;
+          }
+        
+          // Create Geometry.
+          var planeArrays = tdl.primitives.createPlane(g_imageSize, g_imageSize, 1, 1);
+          // Don't need the normals.
+          delete planeArrays.nornal;
+          // rotate from xz plane to xy plane
+          tdl.primitives.reorient(planeArrays,
+              [1, 0, 0, 0,
+               0, 0, 1, 0,
+               0, -1, 0, 0,
+               0, 0, 0, 1]);
+          // translate so we position from top left instead of center.
+          tdl.primitives.reorient(planeArrays,
+              [1, 0, 0, 0,
+               0, 1, 0, 0,
+               0, 0, 1, 0,
+               g_imageSize / 2, g_imageSize / 2, 0, 1]);
+        
+          // Load textures
+          var textures = {
+              diffuseSampler: tdl.textures.loadTexture('../google-io/2011/assets/google.png')
+          };
+        
+          // Create Shader Program
+          var program = tdl.programs.loadProgramFromScriptTags(
+              'sphereVertexShader',
+              'sphereFragmentShader');
+          var model = new tdl.models.Model(program, planeArrays, textures);
+        
+          // -- Setup Instances ----------------------------------
+          var instances = [];
+          var width = canvas.clientWidth - g_imageSize;
+          var height = canvas.clientHeight - g_imageSize;
+          for (var ii = 0; ii < g_maxImages; ++ii) {
+            var position = new Float32Array([Math.random() * width, Math.random() * height]);
+            var colorMult = new Float32Array([Math.random(), Math.random(), Math.random(), Math.random()]);
+            var vel = new Float32Array([1 * (Math.random() < 0.5 ? -60 : 60), 1 * (Math.random() < 0.5 ? -60 : 60)]);
+            var instance = {
+              position: position,
+              colorMult: colorMult,
+              vel: vel,
+              uniforms: {
+                translation: position,
+                colorMult: colorMult
+              }
+            };
+            instances.push(instance);
+          }
+        
+          // pre-allocate a bunch of arrays
+          var v3t0 = new Float32Array(3);
+          var v3t1 = new Float32Array(3);
+          var v3t2 = new Float32Array(3);
+          var v3t3 = new Float32Array(3);
+          var m4t0 = new Float32Array(16);
+          var m4t1 = new Float32Array(16);
+          var m4t2 = new Float32Array(16);
+          var m4t3 = new Float32Array(16);
+          var zero4 = new Float32Array(4);
+          var one4 = new Float32Array([1,1,1,1]);
+          var dimensions = new Float32Array([1, 1]);
+        
+          // uniforms.
+          var sharedUniforms = {
+              dimensions: dimensions
+          };
+        
+          var clock = 0.0;
+          function update(elapsedTime) {
+            clock += elapsedTime;
+        
+            resizeCanvas();
+        
+            // --Update Instance Positions---------------------------------------
+            if (updatePositions) {
+              var width = canvas.clientWidth - g_imageSize;
+              var height = canvas.clientHeight - g_imageSize;
+              var advance = elapsedTime;
+              for (var ii = 0; ii < g_numImages; ++ii) {
+                var instance = instances[ii];
+                instance.position[0] += advance * instance.vel[0];
+                instance.position[1] += advance * instance.vel[1];
+                if (instance.position[0] < 0) {
+                  instance.position[0] = 0;
+                  instance.vel[0] = -instance.vel[0];
+                } else if (instance.position[0] > width) {
+                  instance.position[0] = width;
+                  instance.vel[0] = -instance.vel[0];
+                }
+                if (instance.position[1]  < 0) {
+                  instance.position[1]  = 0;
+                  instance.vel[1] = -instance.vel[1];
+                } else if (instance.position[1]  > height) {
+                  instance.position[1]  = height;
+                  instance.vel[1] = -instance.vel[1];
+                }
+              }
+            }
+          }
+        
+          function render() {
+            renderBegin();
+            renderScene();
+            renderEnd();
+          }
+        
+          function renderBegin() {
+            // clear the screen.
+            gl.colorMask(true, true, true, true);
+            gl.clearColor(1, 1, 1, 1);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            gl.enable(gl.BLEND);
+            gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+        
+            // Pass in the dimensions of the canvas.
+            dimensions[0] = canvas.clientWidth;
+            dimensions[1] = canvas.clientHeight;
+          }
+        
+          function renderScene() {
+            // -- Render Models ---------------------------------------
+            // We only need to render each model once
+            // as they contain all the instances.
+        
+            model.drawPrep(sharedUniforms);
+            for (var ii = 0; ii < g_numImages; ++ii) {
+              var instance = instances[ii];
+              model.draw(instance.uniforms);
+            }
+          }
+        
+          function renderEnd() {
+            // nothing to do.
+          }
+        
+          return {
+            update: update,
+            render: render
+          };
+        }
+        
+        function resizeCanvas() {
+          if (canvas.width != canvas.clientWidth ||
+              canvas.height != canvas.clientHeight) {
+            var tmpheight = canvas.clientHeight;
+            var tmpwidth = canvas.clientWidth;
+            canvas.width = tmpwidth;
+            canvas.height = tmpheight;
+            console.log("resized canvas: " + canvas.width + ", " + canvas.height);
+            gl.viewport(0, 0, canvas.clientWidth, canvas.clientHeight);
+          }
+        }
+        
+        function initialize() {
+          math = tdl.math;
+          fast = tdl.fast;
+          canvas = document.getElementById("canvas");
+          var fpsTimer = new tdl.fps.FPSTimer();
+          var fpsElem = document.getElementById("fps");
+          var cntElem = document.getElementById("cnt");
+          var resultElem = document.getElementById("result");
+          var targetFPSElem = document.getElementById("targetFPS");
+        
+          var targetFPS = 50;
+        
+          var setTargetFPS = function(targetFPS) {
+            PerfHarness.setTargetFPS(targetFPS);
+            targetFPSElem.innerHTML = targetFPS;
+          };
+        
+          $("#targetFPSSlider").slider({
+            max: 60,
+            min: 1,
+            value: targetFPS,
+            slide: function(event, ui) {
+              setTargetFPS(ui.value);
+            }
+          });
+          setTargetFPS(targetFPS);
+        
+          document.getElementById("title").innerHTML = document.getElementsByTagName("title")[0].innerHTML;
+        
+          gl = tdl.webgl.setupWebGL(canvas, {alpha:false, antialias:false});
+          if (!gl) {
+            return false;
+          }
+        
+          resizeCanvas();
+        
+          var app = CreateApp();
+          var testcount = 0;
+          function render(count, averageCount, elapsedTime) {
+            // Update the FPS timer.
+            fpsTimer.update(elapsedTime);
+            fpsElem.innerHTML = fpsTimer.averageFPS;
+        
+            g_numImages = Math.min(g_maxImages, count);
+        
+            cntElem.innerHTML = averageCount;
+            resultElem.innerHTML = Math.round( 1 / (averageCount * fpsTimer.averageFPS / 40000) * 100000);
+            // console.log(resultElem.innerHTML);
+            testcount++;
+            if ( (testcount <= 1500) && (testcount % 5 == 0) )
+              console.log(resultElem.innerHTML,testcount);
+            app.update(elapsedTime);
+            app.render();
+            // var n = 300 ;
+            // if(testcount == n)
+            // appendiframe();
+            // if(testcount == 2 * n){
+            //   var iframe = document.getElementsByTagName('iframe')[0];
+            //   iframe.src = "https://world.taobao.com/";
+            // }
+            // if(testcount == 3 * n){
+            //   var iframe = document.getElementsByTagName('iframe')[0];
+            //   iframe.src = "https://world.taobao.com/";
+            // }
+            // if(testcount == 4 * n){
+            //   var iframe = document.getElementsByTagName('iframe')[0];
+            //   iframe.src = "https://world.taobao.com/";
+            // }
+            // if(testcount == 2 * n){
+            //   var iframe = document.getElementsByTagName('iframe')[0];
+            //   iframe.src = "https://world.taobao.com/";
+            // }
+            // if(testcount == 3 * n){
+            //   var iframe = document.getElementsByTagName('iframe')[0];
+            //   iframe.src = "https://www.wikipedia.org/";
+            // }
+            // if(testcount == 4 * n){
+            //   var iframe = document.getElementsByTagName('iframe')[0];
+            //   iframe.src = "https://www.qq.com/";
+            // }
+            // if(testcount == 5 * n){
+            //   var iframe = document.getElementsByTagName('iframe')[0];
+            //   iframe.src = "https://www.tmall.com/";
+            // }
+            // if(testcount == 6 * n){
+            //   var iframe = document.getElementsByTagName('iframe')[0];
+            //   iframe.src = "https://www.sohu.com/";
+            // }
+            // if(testcount == 7 * n){
+            //   var iframe = document.getElementsByTagName('iframe')[0];
+            //   iframe.src = "https://corporate.jd.com/home/";
+            // }
+            // if(testcount == 8 * n){
+            //   var iframe = document.getElementsByTagName('iframe')[0];
+            //   iframe.src = "https://www.weibo.com/us";
+            // }
+            // if(testcount == 9 * n){
+            //   var iframe = document.getElementsByTagName('iframe')[0];
+            //   iframe.src = "https://www.360.cn/";
+            // }
+            // if(testcount == 10 * n){
+            //   var iframe = document.getElementsByTagName('iframe')[0];
+            //   iframe.src = "https://login.tmall.com/";
+            // }
+            // if(testcount == 11 * n){
+            //   var iframe = document.getElementsByTagName('iframe')[0];
+            //   iframe.src = "https://www.blogger.com/about/?r=1-null_user";
+            // }
+              
+          }
+          var framesToAverage = 60;
+          PerfHarness.start(canvas, render, 60);
+          // console.log("&&&&&",testcount);
+          
+        }
+        </script>
+
+
 </html>
