@@ -1884,23 +1884,23 @@ function initialize() {
 
 
 
-    x_time = x2_time;  
-    if (frameCount == n)
-      appendiframe();
-     if(frameCount == 2 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.qq.com/";
-    }
+    // x_time = x2_time;  
+    // if (frameCount == n)
+    //   appendiframe();
+    //  if(frameCount == 2 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.qq.com/";
+    // }
 
-    if(frameCount == 3 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.qq.com/";
-    }
+    // if(frameCount == 3 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.qq.com/";
+    // }
 
-    if(frameCount == 4 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.qq.com/";
-    }
+    // if(frameCount == 4 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.qq.com/";
+    // }
     // if(frameCount == 4 * n){
     //   var iframe = document.getElementsByTagName('iframe')[0];
     //   iframe.src = "https://www.qq.com/";
