@@ -72,16 +72,21 @@
     function timedCount()
     {
         //console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-        document.getElementById('txt').innerHTML = "clock: " + c + "s";
+        t = setInterval(animate, 1000);
+    }
+    function animate(){
+        if (ii != 10)
+            document.getElementById('txt').innerHTML = "clock: " + c + "s";
         c = c + 1;
-        t = setTimeout("timedCount()",1000);
-        if (c == 15)
+        if ( (c == 16) && (ii != 10)){
             document.getElementById("testbotton").value= 'Next';
+        }
     }
     var ii = 0;
     function ChangeText()
     {
         // console.log("iiiiiiiiiiiii",ii);
+        clearInterval(t);
         if (ii == 0){
             document.getElementById("p1").innerHTML= "Please copy the address to the tab of private mode window. (1/5)<br />" + "<font color = \"red\"><b>https://www.google.com/</b></font>";
             document.getElementById("p2").innerHTML= "Also, you need make sure <font color = \"red\"><b>every window </b></font>just open <font color = \"red\"><b>one tab</b></font> during the test.";
