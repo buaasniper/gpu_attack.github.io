@@ -1884,55 +1884,58 @@ function initialize() {
 
 
 
-    // x_time = x2_time;  
-    // if (frameCount == n)
-    //   appendiframe();
-    //  if(frameCount == 2 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.qq.com/";
-    // }
+    x_time = x2_time;  
+    if (frameCount == n)
+      appendiframe();
+     if(frameCount == 2 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.qq.com/";
+    }
 
-    // if(frameCount == 3 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.qq.com/";
-    // }
+    if(frameCount == 3 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.qq.com/";
+    }
 
-    // if(frameCount == 4 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.qq.com/";
-    // }
-    // if(frameCount == 4 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.qq.com/";
-    // }
-    // if(frameCount == 5 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.tmall.com/";
-    // }
-    // if(frameCount == 6 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.sohu.com/";
-    // }
-    // if(frameCount == 7 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://corporate.jd.com/home/";
-    // }
-    // if(frameCount == 8 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.weibo.com/us";
-    // }
-    // if(frameCount == 9 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.360.cn/";
-    // }
-    // if(frameCount == 10 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://login.tmall.com/";
-    // }
-    // if(frameCount == 11 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.blogger.com/about/?r=1-null_user";
-    // }
+    if(frameCount == 4 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.qq.com/";
+    }
+    if(frameCount == 4 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.qq.com/";
+    }
+    if(frameCount == 5 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.tmall.com/";
+    }
+    if(frameCount == 6 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.sohu.com/";
+    }
+    if(frameCount == 7 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://corporate.jd.com/home/";
+    }
+    if(frameCount == 8 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.weibo.com/us";
+    }
+    if(frameCount == 9 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.360.cn/";
+    }
+    if(frameCount == 10 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://login.tmall.com/";
+    }
+    if(frameCount == 11 * n){
+      var iframe = document.getElementsByTagName('iframe')[0];
+      iframe.src = "https://www.blogger.com/about/?r=1-null_user";
+    }
+    if(frameCount == 12 * n){
+      location.href='../testpage2/endtem.html';
+    }
       
     
 

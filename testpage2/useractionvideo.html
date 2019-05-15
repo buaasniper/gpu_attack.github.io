@@ -6,7 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The user action test &#8212; Flask 1.0.2 documentation</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+  <title>The user action test (2/2)</title>
   <link href="../jquery-ui-1.8.2.custom/css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
   <script src="../jquery-ui-1.8.2.custom/js/jquery-1.4.2.min.js"></script>
   <script src="../jquery-ui-1.8.2.custom/js/jquery-ui-1.8.2.custom.min.js"></script>
@@ -24,9 +25,9 @@
         <div class="body" role="main">
           
 <div class="section" id="flask">
-<h1>The user action test<a class="headerlink" href="#flask" title="Permalink to this headline"></a></h1>
-<h3>Watch video on Youtube.</h3>
-<p id = "p1">You need close the private mode window and reopen the private mode window again.<Br /> Also, You need open the Youtube webpage on the private mode winodw and click the button.</p>
+<h1>The user action test (2/2)<a class="headerlink" href="#flask" title="Permalink to this headline"></a></h1>
+<h2>Watch video on Youtube. (3/3)</h2>
+<p id = "p1">You need to <font color = "red"><b>close </b></font>the private mode window and <font color = "red"><b>reopen </b></font>the <font color = "red"><b>blank page </b></font>on the private mode window.<Br />Also, you need make sure <font color = "red"><b>every window </b></font>just open <font color = "red"><b>one tab</b></font> during the test.</p>
 <div class="toctree-wrapper compound" id = "p2">
         <ul>
         <li class="toctree-l2">Windows, Linux, or Chrome OS: Press Ctrl + Shift + n.</a></li>
@@ -35,8 +36,8 @@
 </div>
 <p>The fish video is our test. You don't need to care about that.</p>
 
-<div id="txt"></div><br />
-<input type="button" id = "testbotton" onclick=ChangeText() value="I already open the Youtube webpage." />
+<div id="txt" class = "div"></div><br />
+<input type="button" class = "button" id = "testbotton" onclick=ChangeText() value="I already open the blank webpage." />
 <br /><br /><br />
 
 <canvas id="canvas" width="512" height="512" style="width: 100%; height: 50%;"></canvas>
@@ -75,13 +76,13 @@
         c = c + 1;
         t = setTimeout("timedCount()",1000);
         if (c == 60)
-            location.href = './fingerprint.html';
+            location.href = './end.html';
     }
     var i = 0;
     function ChangeText()
     {
         if (i == 0){
-            document.getElementById("p1").innerHTML= "Start watching videos on Youtube.";
+            document.getElementById("p1").innerHTML= "Open the Youtube on the <font color = \"red\"><b>private mode window</b></font> and watch a video on the Youtube.";
             document.getElementById("p2").innerHTML= "";
             document.getElementById("testbotton").value= 'This test will spend 60 seconds.';
             timedCount();
