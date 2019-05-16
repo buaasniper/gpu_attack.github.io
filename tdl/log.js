@@ -52,7 +52,7 @@ tdl.log = tdl.log || {};
 tdl.log = function() {
   var str = tdl.string.argsToString(arguments);
   if (window.console && window.console.log) {
-    window.console.log(str);
+    // window.console.log(str);
   } else if (window.dump) {
     window.dump(str + "\n");
   }

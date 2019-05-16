@@ -88,13 +88,19 @@
         // console.log("iiiiiiiiiiiii",ii);
         clearInterval(t);
         if (ii == 0){
+          //start collect data
+            startCollectDataFlag = 1;
+            testNumber = 1;
             document.getElementById("p1").innerHTML= "Please copy the address to the tab of private mode window. (1/5)<br />" + "<font color = \"red\"><b>https://www.google.com/</b></font>";
             document.getElementById("p2").innerHTML= "Also, you need make sure <font color = \"red\"><b>every window </b></font>just open <font color = \"red\"><b>one tab</b></font> during the test.";
             document.getElementById("testbotton").value= 'This test will spend 15 seconds.';
             timedCount();
             ii++;
-            console.log("ii",ii);
+            // console.log("ii",ii);
         }else if (ii == 1){
+            // console.log("test data", temDataArray);
+            testdemo();
+            startCollectDataFlag = 0;
             document.getElementById("p1").innerHTML= "Please copy the address to the tab of private mode window. (2/5)<br />" + "<font color = \"red\"><b>https://www.baidu.com/</b></font>";
             // document.getElementById("p2").innerHTML= "Also, you need make sure every window just open one tab during the test.";
             document.getElementById("testbotton").value= 'This test will spend 15 seconds.';

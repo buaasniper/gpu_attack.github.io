@@ -379,6 +379,10 @@ function Log(msg) {
     tdl.log(msg);
   }
 }
+var temDataArray = [];
+function testdemo(){
+  console.log(temDataArray);
+}
 
 function getScriptText(id) {
   //tdl.log("loading: ", id);
@@ -1721,14 +1725,24 @@ function initialize() {
   //loadURL(iframe.src);	
   }
 
-  var rendertime1 = [];
-  var rendertime2 = [];
-  var rendertime3 = [];
-  var realtime1 = [];
-  var realtime2 = [];
-  var realtime3 = [];
-  var time_300;
-  var n = 300 ;
+  // var rendertime1 = [];
+  // var rendertime2 = [];
+  // var rendertime3 = [];
+  // var realtime1 = [];
+  // var realtime2 = [];
+  // var realtime3 = [];
+  // var time_300;
+  // var n = 300 ;
+  //在这里开始记录数据
+
+  window.startCollectDataFlag = 0;
+  window.collectData = [];
+  window.dataNumber = 0;
+  window.startRealTime = 0;
+  window.testNumber = 0;
+ 
+
+
 
   function onAnimationFrame() {
     var now = theClock.getTime();
@@ -1779,112 +1793,136 @@ function initialize() {
     frameCount++;
     g_fpsTimer.update(elapsedTime);
     fpsElem.innerHTML = g_fpsTimer.averageFPS;
+
+
+    //start collect Data
+    if ((startCollectDataFlag == 1) || (startRealTime != 0)){
+      // initialization
+      if (startCollectDataFlag == 1){
+        startCollectDataFlag = 0;
+        startRealTime = performance.now();
+        temDataArray = [];
+
+      //start collect data
+      }else{
+        //Webpage fingerprint test
+        if (testNumber == 1){
+          var temData = performance.now() - startRealTime;
+          temDataArray.push(temData);
+          //end collect data
+          if (temData > 15000){
+            startRealTime = 0;
+            console.log(temDataArray);
+          }
+        }
+
+
+      }
+    }
     
-    var x2_time = performance.now();
-    
     
 
 
-    /*==============*/
-    if (frameCount == 2 * n)
-      time_300 = x2_time;
-    if ((frameCount > 2 * n) && (frameCount <= 2 * n + 100)){
-      rendertime1.push(x2_time - x_time);
-      realtime1.push(x2_time - time_300);
-    }
-    if ((frameCount > 2 * n + 100) && (frameCount <= 2 * n + 200)){
-      rendertime2.push(x2_time - x_time);
-      realtime2.push(x2_time - time_300);
-    }
-    if ((frameCount > 2 * n + 200) && (frameCount <= 2 * n + 300)){
-      rendertime3.push(x2_time - x_time);
-      realtime3.push(x2_time - time_300);
-    }
-    // console.log(frameCount);
-    if (frameCount == 3 * n){
-      console.log(rendertime1);
-      console.log(rendertime2);
-      console.log(rendertime3);
-      console.log(realtime1);
-      console.log(realtime2);
-      console.log(realtime3);
-      console.log('=================')
-      rendertime1 = [];
-      rendertime2 = [];
-      rendertime3 = [];
-      realtime1 = [];
-      realtime2 = [];
-      realtime3 = [];
-    }
+    // /*==============*/
+    // if (frameCount == 2 * n)
+    //   time_300 = x2_time;
+    // if ((frameCount > 2 * n) && (frameCount <= 2 * n + 100)){
+    //   rendertime1.push(x2_time - x_time);
+    //   realtime1.push(x2_time - time_300);
+    // }
+    // if ((frameCount > 2 * n + 100) && (frameCount <= 2 * n + 200)){
+    //   rendertime2.push(x2_time - x_time);
+    //   realtime2.push(x2_time - time_300);
+    // }
+    // if ((frameCount > 2 * n + 200) && (frameCount <= 2 * n + 300)){
+    //   rendertime3.push(x2_time - x_time);
+    //   realtime3.push(x2_time - time_300);
+    // }
+    // // console.log(frameCount);
+    // if (frameCount == 3 * n){
+    //   console.log(rendertime1);
+    //   console.log(rendertime2);
+    //   console.log(rendertime3);
+    //   console.log(realtime1);
+    //   console.log(realtime2);
+    //   console.log(realtime3);
+    //   console.log('=================')
+    //   rendertime1 = [];
+    //   rendertime2 = [];
+    //   rendertime3 = [];
+    //   realtime1 = [];
+    //   realtime2 = [];
+    //   realtime3 = [];
+    // }
 
 
-    /*==============*/
-    if (frameCount == 3 * n)
-      time_300 = x2_time;
-    if ((frameCount > 3 * n) && (frameCount <= 3 * n + 100)){
-      rendertime1.push(x2_time - x_time);
-      realtime1.push(x2_time - time_300);
-    }
-    if ((frameCount > 3 * n + 100) && (frameCount <= 3 * n + 200)){
-      rendertime2.push(x2_time - x_time);
-      realtime2.push(x2_time - time_300);
-    }
-    if ((frameCount > 3 * n + 200) && (frameCount <= 3 * n + 300)){
-      rendertime3.push(x2_time - x_time);
-      realtime3.push(x2_time - time_300);
-    }
-    // console.log(frameCount);
-    if (frameCount == 4 * n){
-      console.log(rendertime1);
-      console.log(rendertime2);
-      console.log(rendertime3);
-      console.log(realtime1);
-      console.log(realtime2);
-      console.log(realtime3);
-      console.log('======finish===========')
-      rendertime1 = [];
-      rendertime2 = [];
-      rendertime3 = [];
-      realtime1 = [];
-      realtime2 = [];
-      realtime3 = [];
-    }
+    // /*==============*/
+    // if (frameCount == 3 * n)
+    //   time_300 = x2_time;
+    // if ((frameCount > 3 * n) && (frameCount <= 3 * n + 100)){
+    //   rendertime1.push(x2_time - x_time);
+    //   realtime1.push(x2_time - time_300);
+    // }
+    // if ((frameCount > 3 * n + 100) && (frameCount <= 3 * n + 200)){
+    //   rendertime2.push(x2_time - x_time);
+    //   realtime2.push(x2_time - time_300);
+    // }
+    // if ((frameCount > 3 * n + 200) && (frameCount <= 3 * n + 300)){
+    //   rendertime3.push(x2_time - x_time);
+    //   realtime3.push(x2_time - time_300);
+    // }
+    // // console.log(frameCount);
+    // if (frameCount == 4 * n){
+    //   console.log(rendertime1);
+    //   console.log(rendertime2);
+    //   console.log(rendertime3);
+    //   console.log(realtime1);
+    //   console.log(realtime2);
+    //   console.log(realtime3);
+    //   console.log('======finish===========')
+    //   rendertime1 = [];
+    //   rendertime2 = [];
+    //   rendertime3 = [];
+    //   realtime1 = [];
+    //   realtime2 = [];
+    //   realtime3 = [];
+    // }
 
-    /*==============*/
-    if (frameCount == 4 * n)
-      time_300 = x2_time;
-    if ((frameCount > 4 * n) && (frameCount <= 4 * n + 100)){
-      rendertime1.push(x2_time - x_time);
-      realtime1.push(x2_time - time_300);
-    }
-    if ((frameCount > 4 * n + 100) && (frameCount <= 4 * n + 200)){
-      rendertime2.push(x2_time - x_time);
-      realtime2.push(x2_time - time_300);
-    }
-    if ((frameCount > 4 * n + 200) && (frameCount <= 4 * n + 300)){
-      rendertime3.push(x2_time - x_time);
-      realtime3.push(x2_time - time_300);
-    }
-    // console.log(frameCount);
-    if (frameCount == 5 * n){
-      console.log(rendertime1);
-      console.log(rendertime2);
-      console.log(rendertime3);
-      console.log(realtime1);
-      console.log(realtime2);
-      console.log(realtime3);
-      console.log('=================')
-      rendertime1 = [];
-      rendertime2 = [];
-      rendertime3 = [];
-      realtime1 = [];
-      realtime2 = [];
-      realtime3 = [];
-    }
+    // /*==============*/
+    // if (frameCount == 4 * n)
+    //   time_300 = x2_time;
+    // if ((frameCount > 4 * n) && (frameCount <= 4 * n + 100)){
+    //   rendertime1.push(x2_time - x_time);
+    //   realtime1.push(x2_time - time_300);
+    // }
+    // if ((frameCount > 4 * n + 100) && (frameCount <= 4 * n + 200)){
+    //   rendertime2.push(x2_time - x_time);
+    //   realtime2.push(x2_time - time_300);
+    // }
+    // if ((frameCount > 4 * n + 200) && (frameCount <= 4 * n + 300)){
+    //   rendertime3.push(x2_time - x_time);
+    //   realtime3.push(x2_time - time_300);
+    // }
+    // // console.log(frameCount);
+    // if (frameCount == 5 * n){
+    //   console.log(rendertime1);
+    //   console.log(rendertime2);
+    //   console.log(rendertime3);
+    //   console.log(realtime1);
+    //   console.log(realtime2);
+    //   console.log(realtime3);
+    //   console.log('=================')
+    //   rendertime1 = [];
+    //   rendertime2 = [];
+    //   rendertime3 = [];
+    //   realtime1 = [];
+    //   realtime2 = [];
+    //   realtime3 = [];
+    // }
 
 
 
-    x_time = x2_time;  
+    // x_time = x2_time;  
     // if (frameCount == n)
     //   appendiframe();
     //  if(frameCount == 2 * n){
