@@ -27,13 +27,14 @@
 <div class="section" id="flask">
 <h1>Webpage fingerprint test (1/2)<a class="headerlink" href="#flask" title="Permalink to this headline"></a></h1>
 <P>In this test, we will try to detect the webpage you opened on the private mode window.<Br />Thus, we need you to follow the instruction to open the webpage one by one on the private mode window.</P>
-<h3 id = "p1">You need to open <font color = "red"><b>one </b></font>private mode window.<Br /> And during this test, you <font color = "red"><b>don't need to </b></font>close the private mode window.</h3>
-<div  class="div" id = "p2">
+<h3 id = "p1">You need to open <font color = "red"><b>one </b></font>private mode window.<Br /> And during this test, you <font color = "red"><b>cannot </b></font>close the private mode window.</h3>
+<div  class="div">
         <ul>
         <li class="toctree-l2">Windows, Linux, or Chrome OS: Press Ctrl + Shift + n.</a></li>
         <li class="toctree-l2">Mac: Press ⌘ + Shift + n.</a></li>
         </ul>
 </div>
+<p id = "p2"></p>
 <p>The fish video is our test. You don't need to care about that.</p>
 
 <div class="div" id="txt"></div><br />
@@ -86,9 +87,10 @@
     function ChangeText()
     {
         // console.log("iiiiiiiiiiiii",ii);
-        clearInterval(t);
+        
         if (ii == 0){
           //start collect data
+            clearInterval(t);
             startCollectDataFlag = 1;
             testNumber = 1;
             document.getElementById("p1").innerHTML= "Please copy the address to the tab of private mode window. (1/5)<br />" + "<font color = \"red\"><b>https://www.google.com/</b></font>";
@@ -97,38 +99,68 @@
             timedCount();
             ii++;
             // console.log("ii",ii);
-        }else if (ii == 1){
-            // console.log("test data", temDataArray);
-            testdemo();
-            startCollectDataFlag = 0;
+        }else if ((ii == 1) && (document.getElementById("testbotton").value == 'Next')){
+            clearInterval(t);
+            if (dataCheck() == 0){
+              alert("We detected that you did not follow our steps: open the corresponding website in the privacy mode window. You need to restart the experiment.");
+              location.href='./fingerprint.html';
+            }
+            startCollectDataFlag = 1;
+            testNumber = 1;
             document.getElementById("p1").innerHTML= "Please copy the address to the tab of private mode window. (2/5)<br />" + "<font color = \"red\"><b>https://www.baidu.com/</b></font>";
             // document.getElementById("p2").innerHTML= "Also, you need make sure every window just open one tab during the test.";
             document.getElementById("testbotton").value= 'This test will spend 15 seconds.';
             timedCount();
             ii++;
             c = 0;
-        }else if (ii == 2){
+        }else if ((ii == 2) && (document.getElementById("testbotton").value == 'Next')){
+            clearInterval(t);
+            if (dataCheck() == 0){
+              alert("We detected that you did not follow our steps: open the corresponding website in the privacy mode window. You need to restart the experiment.");
+              location.href='./fingerprint.html';
+            }
+            startCollectDataFlag = 1;
+            testNumber = 1;
             document.getElementById("p1").innerHTML= "Please copy the address to the tab of private mode window. (3/5)<br />" + "<font color = \"red\"><b>https://www.amazon.com/</b></font>";
             // document.getElementById("p2").innerHTML= "Also, you need make sure every window just open one tab during the test.";
             document.getElementById("testbotton").value= 'This test will spend 15 seconds.';
             timedCount();
             ii++;
             c = 0;
-        }else if (ii == 3){
+        }else if ((ii == 3) && (document.getElementById("testbotton").value == 'Next')){
+            clearInterval(t);
+            if (dataCheck() == 0){
+              alert("We detected that you did not follow our steps: open the corresponding website in the privacy mode window. You need to restart the experiment.");
+              location.href='./fingerprint.html';
+            }
+            startCollectDataFlag = 1;
+            testNumber = 1;
             document.getElementById("p1").innerHTML= "Please copy the address to the tab of private mode window. (4/5)<br />" + "<font color = \"red\"><b>https://world.taobao.com/</b></font>";
             // document.getElementById("p2").innerHTML= "Also, you need make sure every window just open one tab during the test.";
             document.getElementById("testbotton").value= 'This test will spend 15 seconds.';
             timedCount();
             ii++;
             c = 0;
-        }else if (ii == 4){
+        }else if ((ii == 4) && (document.getElementById("testbotton").value == 'Next')){
+            clearInterval(t);
+            if (dataCheck() == 0){
+              alert("We detected that you did not follow our steps: open the corresponding website in the privacy mode window. You need to restart the experiment.");
+              location.href='./fingerprint.html';
+            }
+            startCollectDataFlag = 1;
+            testNumber = 1;
             document.getElementById("p1").innerHTML= "Please copy the address to the tab of private mode window. (5/5)<br />" + "<font color = \"red\"><b>https://www.yahoo.com/</b></font>";
             // document.getElementById("p2").innerHTML= "Also, you need make sure every window just open one tab during the test.";
             document.getElementById("testbotton").value= 'This test will spend 15 seconds.';
             timedCount();
             ii++;
             c = 0;
-        }else if (ii == 5){
+        }else if ((ii == 5) && (document.getElementById("testbotton").value == 'Next')){
+            clearInterval(t);
+            if (dataCheck() == 0){
+              alert("We detected that you did not follow our steps: open the corresponding website in the privacy mode window. You need to restart the experiment.");
+              location.href='./fingerprint.html';
+            }
             location.href='./useraction.html';
         }
     }

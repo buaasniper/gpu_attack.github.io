@@ -379,9 +379,40 @@ function Log(msg) {
     tdl.log(msg);
   }
 }
+
+
+
 var temDataArray = [];
-function testdemo(){
-  console.log(temDataArray);
+
+function dataCheck(){
+  var length = temDataArray.length;
+  var num = 0;
+  var testNum = 0;
+  var rate = 0.1;
+  var temCalDataArray = [];
+  temCalDataArray[0] = temDataArray[0];
+  for (var i = length - 1; i > 0; i--)
+    temCalDataArray[i] = temDataArray[i] - temDataArray[i - 1];
+  // console.log(temCalDataArray);
+  // console.log(length);
+  for (i = 0; i < length; i++)
+    num += temCalDataArray[i];
+  var ave = num / length;
+  // console.log(num);
+  // console.log(ave);
+  for (i = 0; i < length; i++){
+    if (( temCalDataArray[i] > ave * (1 + rate) ) || ( temCalDataArray[i] < ave * (1 - rate) ) )
+      testNum += 1;
+    // console.log(temCalDataArray[i]/ave);
+  }
+  
+  console.log("testNum", testNum);
+  console.log(testNum / length);
+  temDataArray = [];
+  if (testNum / length > 0.05)
+    return 1;
+  else
+    return 0;
 }
 
 function getScriptText(id) {
