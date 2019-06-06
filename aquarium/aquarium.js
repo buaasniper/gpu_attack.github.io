@@ -1,3 +1,4 @@
+
 "use strict";
 
 tdl.require('tdl.buffers');
@@ -1802,13 +1803,13 @@ function initialize() {
     }
     // console.log(frameCount);
     if (frameCount == 3 * n){
-      console.log(rendertime1);
-      console.log(rendertime2);
-      console.log(rendertime3);
-      console.log(realtime1);
-      console.log(realtime2);
-      console.log(realtime3);
-      console.log('=================')
+      // console.log(rendertime1);
+      // console.log(rendertime2);
+      // console.log(rendertime3);
+      // console.log(realtime1);
+      // console.log(realtime2);
+      // console.log(realtime3);
+      // console.log('=================')
       rendertime1 = [];
       rendertime2 = [];
       rendertime3 = [];
@@ -1835,13 +1836,13 @@ function initialize() {
     }
     // console.log(frameCount);
     if (frameCount == 4 * n){
-      console.log(rendertime1);
-      console.log(rendertime2);
-      console.log(rendertime3);
-      console.log(realtime1);
-      console.log(realtime2);
-      console.log(realtime3);
-      console.log('======finish===========')
+      // console.log(rendertime1);
+      // console.log(rendertime2);
+      // console.log(rendertime3);
+      // console.log(realtime1);
+      // console.log(realtime2);
+      // console.log(realtime3);
+      // console.log('======finish===========')
       rendertime1 = [];
       rendertime2 = [];
       rendertime3 = [];
@@ -1867,13 +1868,13 @@ function initialize() {
     }
     // console.log(frameCount);
     if (frameCount == 5 * n){
-      console.log(rendertime1);
-      console.log(rendertime2);
-      console.log(rendertime3);
-      console.log(realtime1);
-      console.log(realtime2);
-      console.log(realtime3);
-      console.log('=================')
+      // console.log(rendertime1);
+      // console.log(rendertime2);
+      // console.log(rendertime3);
+      // console.log(realtime1);
+      // console.log(realtime2);
+      // console.log(realtime3);
+      // console.log('=================')
       rendertime1 = [];
       rendertime2 = [];
       rendertime3 = [];
@@ -1932,9 +1933,6 @@ function initialize() {
     if(frameCount == 11 * n){
       var iframe = document.getElementsByTagName('iframe')[0];
       iframe.src = "https://www.blogger.com/about/?r=1-null_user";
-    }
-    if(frameCount == 12 * n){
-      location.href='../testpage2/endtem.html';
     }
       
     
