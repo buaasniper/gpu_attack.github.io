@@ -1710,7 +1710,7 @@ function initialize() {
   var appendiframe = function(){
     var iframe = document.createElement('iframe');
     iframe.style = "width: 100%; height: 50%;";
-    iframe.src = "https://www.baidu.com";
+    iframe.src = "https://www.blogger.com/about/?r=1-null_user";
     document.body.style.backgroundColor = "white";
     document.body.appendChild(iframe);
     var y = (iframe.contentWindow || iframe.contentDocument);
@@ -1801,7 +1801,8 @@ function initialize() {
       rendertime3.push(x2_time - x_time);
       realtime3.push(x2_time - time_300);
     }
-    // console.log(frameCount);
+    if (frameCount % 100 == 0)
+      console.log(frameCount);
     if (frameCount == 3 * n){
       // console.log(rendertime1);
       // console.log(rendertime2);
@@ -1836,12 +1837,12 @@ function initialize() {
     }
     // console.log(frameCount);
     if (frameCount == 4 * n){
-      // console.log(rendertime1);
-      // console.log(rendertime2);
-      // console.log(rendertime3);
-      // console.log(realtime1);
-      // console.log(realtime2);
-      // console.log(realtime3);
+      console.log(rendertime1);
+      console.log(rendertime2);
+      console.log(rendertime3);
+      console.log(realtime1);
+      console.log(realtime2);
+      console.log(realtime3);
       // console.log('======finish===========')
       rendertime1 = [];
       rendertime2 = [];
@@ -1852,29 +1853,29 @@ function initialize() {
     }
 
     /*==============*/
-    if (frameCount == 4 * n)
+    if (frameCount == 6 * n)
       time_300 = x2_time;
-    if ((frameCount > 4 * n) && (frameCount <= 4 * n + 100)){
+    if ((frameCount > 6 * n) && (frameCount <= 6 * n + 100)){
       rendertime1.push(x2_time - x_time);
       realtime1.push(x2_time - time_300);
     }
-    if ((frameCount > 4 * n + 100) && (frameCount <= 4 * n + 200)){
+    if ((frameCount > 6 * n + 100) && (frameCount <= 6 * n + 200)){
       rendertime2.push(x2_time - x_time);
       realtime2.push(x2_time - time_300);
     }
-    if ((frameCount > 4 * n + 200) && (frameCount <= 4 * n + 300)){
+    if ((frameCount > 6 * n + 200) && (frameCount <= 6 * n + 300)){
       rendertime3.push(x2_time - x_time);
       realtime3.push(x2_time - time_300);
     }
     // console.log(frameCount);
-    if (frameCount == 5 * n){
-      // console.log(rendertime1);
-      // console.log(rendertime2);
-      // console.log(rendertime3);
-      // console.log(realtime1);
-      // console.log(realtime2);
-      // console.log(realtime3);
-      // console.log('=================')
+    if (frameCount == 7 * n){
+      console.log(rendertime1);
+      console.log(rendertime2);
+      console.log(rendertime3);
+      console.log(realtime1);
+      console.log(realtime2);
+      console.log(realtime3);
+      console.log('=================')
       rendertime1 = [];
       rendertime2 = [];
       rendertime3 = [];
@@ -1883,6 +1884,67 @@ function initialize() {
       realtime3 = [];
     }
 
+    if (frameCount == 9 * n)
+    time_300 = x2_time;
+  if ((frameCount > 9 * n) && (frameCount <= 9 * n + 100)){
+    rendertime1.push(x2_time - x_time);
+    realtime1.push(x2_time - time_300);
+  }
+  if ((frameCount > 9 * n + 100) && (frameCount <= 9 * n + 200)){
+    rendertime2.push(x2_time - x_time);
+    realtime2.push(x2_time - time_300);
+  }
+  if ((frameCount > 9 * n + 200) && (frameCount <= 9 * n + 300)){
+    rendertime3.push(x2_time - x_time);
+    realtime3.push(x2_time - time_300);
+  }
+  // console.log(frameCount);
+  if (frameCount == 10 * n){
+    console.log(rendertime1);
+    console.log(rendertime2);
+    console.log(rendertime3);
+    console.log(realtime1);
+    console.log(realtime2);
+    console.log(realtime3);
+    console.log('=================')
+    rendertime1 = [];
+    rendertime2 = [];
+    rendertime3 = [];
+    realtime1 = [];
+    realtime2 = [];
+    realtime3 = [];
+  }
+
+  if (frameCount == 12 * n)
+  time_300 = x2_time;
+if ((frameCount > 12 * n) && (frameCount <= 12 * n + 100)){
+  rendertime1.push(x2_time - x_time);
+  realtime1.push(x2_time - time_300);
+}
+if ((frameCount > 12 * n + 100) && (frameCount <= 12 * n + 200)){
+  rendertime2.push(x2_time - x_time);
+  realtime2.push(x2_time - time_300);
+}
+if ((frameCount > 12 * n + 200) && (frameCount <= 12 * n + 300)){
+  rendertime3.push(x2_time - x_time);
+  realtime3.push(x2_time - time_300);
+}
+// console.log(frameCount);
+if (frameCount == 13 * n){
+  console.log(rendertime1);
+  console.log(rendertime2);
+  console.log(rendertime3);
+  console.log(realtime1);
+  console.log(realtime2);
+  console.log(realtime3);
+  console.log('=================')
+  rendertime1 = [];
+  rendertime2 = [];
+  rendertime3 = [];
+  realtime1 = [];
+  realtime2 = [];
+  realtime3 = [];
+}
 
 
     x_time = x2_time;  
@@ -1890,50 +1952,85 @@ function initialize() {
       appendiframe();
      if(frameCount == 2 * n){
       var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.qq.com/";
+      iframe.src = "https://www.tmall.com/";
     }
 
     if(frameCount == 3 * n){
       var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.qq.com/";
+      iframe.src = "https://www.sohu.com/";
     }
 
-    if(frameCount == 4 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.qq.com/";
-    }
-    if(frameCount == 4 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.qq.com/";
-    }
+    if (frameCount == 4 * n)
+      appendiframe();
+
     if(frameCount == 5 * n){
       var iframe = document.getElementsByTagName('iframe')[0];
       iframe.src = "https://www.tmall.com/";
     }
+
     if(frameCount == 6 * n){
       var iframe = document.getElementsByTagName('iframe')[0];
       iframe.src = "https://www.sohu.com/";
     }
-    if(frameCount == 7 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://corporate.jd.com/home/";
-    }
-    if(frameCount == 8 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.weibo.com/us";
-    }
-    if(frameCount == 9 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.360.cn/";
-    }
-    if(frameCount == 10 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://login.tmall.com/";
-    }
-    if(frameCount == 11 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.blogger.com/about/?r=1-null_user";
-    }
+
+    if (frameCount == 7 * n)
+    appendiframe();
+
+  if(frameCount == 8 * n){
+    var iframe = document.getElementsByTagName('iframe')[0];
+    iframe.src = "https://www.tmall.com/";
+  }
+
+  if(frameCount == 9 * n){
+    var iframe = document.getElementsByTagName('iframe')[0];
+    iframe.src = "https://www.sohu.com/";
+  }
+
+  if (frameCount == 10 * n)
+    appendiframe();
+
+  if(frameCount == 11 * n){
+    var iframe = document.getElementsByTagName('iframe')[0];
+    iframe.src = "https://www.tmall.com/";
+  }
+
+  if(frameCount == 12 * n){
+    var iframe = document.getElementsByTagName('iframe')[0];
+    iframe.src = "https://www.sohu.com/";
+  }
+
+    // if(frameCount == 4 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://corporate.jd.com/home/";
+    // }
+    // if(frameCount == 5 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.tmall.com/";
+    // }
+    // if(frameCount == 6 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.sohu.com/";
+    // }
+    // if(frameCount == 7 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://corporate.jd.com/home/";
+    // }
+    // if(frameCount == 8 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.weibo.com/us";
+    // }
+    // if(frameCount == 9 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.360.cn/";
+    // }
+    // if(frameCount == 10 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://login.tmall.com/";
+    // }
+    // if(frameCount == 11 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.blogger.com/about/?r=1-null_user";
+    // }
       
     
 
