@@ -1957,7 +1957,7 @@ if (frameCount == 13 * n){
 
     if(frameCount == 3 * n){
       var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.sohu.com/";
+      iframe.src = "https://www.baidu.com/";
     }
 
     if (frameCount == 4 * n)
@@ -1970,7 +1970,7 @@ if (frameCount == 13 * n){
 
     if(frameCount == 6 * n){
       var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.sohu.com/";
+      iframe.src = "https://www.baidu.com/";
     }
 
     if (frameCount == 7 * n)
@@ -1983,7 +1983,7 @@ if (frameCount == 13 * n){
 
   if(frameCount == 9 * n){
     var iframe = document.getElementsByTagName('iframe')[0];
-    iframe.src = "https://www.sohu.com/";
+    iframe.src = "https://www.baidu.com/";
   }
 
   if (frameCount == 10 * n)
@@ -1996,7 +1996,7 @@ if (frameCount == 13 * n){
 
   if(frameCount == 12 * n){
     var iframe = document.getElementsByTagName('iframe')[0];
-    iframe.src = "https://www.sohu.com/";
+    iframe.src = "https://www.baidu.com/";
   }
 
     // if(frameCount == 4 * n){
