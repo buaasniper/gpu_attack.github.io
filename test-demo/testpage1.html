@@ -1,506 +1,178 @@
-<!doctype html>
+<!-- Licensed under a BSD license. See license.html for license -->
+<!DOCTYPE html>
 <html>
-   <body>
-      <canvas width = "570" height = "570" id = "my_Canvas"></canvas>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec2 aVertexPosition;
+      
+        uniform vec2 uScalingFactor;
+        uniform vec2 uRotationVector;
+      
+        void main() {
+          vec2 rotatedPosition = vec2(
+            aVertexPosition.x * uRotationVector.y +
+                  aVertexPosition.y * uRotationVector.x,
+            aVertexPosition.y * uRotationVector.y -
+                  aVertexPosition.x * uRotationVector.x
+          );
+      
+          gl_Position = vec4(rotatedPosition * uScalingFactor, 0.0, 1.0);
+        }
+      </script><script id="fragment-shader" type="x-shader/x-fragment">
+        #ifdef GL_ES
+          precision highp float;
+        #endif
+      
+        uniform vec4 uGlobalColor;
+      
+        void main() {
+          gl_FragColor = uGlobalColor;
+        }
+      </script><canvas id="glcanvas" width="600" height="460">
+        Oh no! Your browser doesn't support canvas!
+      </canvas>
 
       <script>
-         /*============== Creating a canvas ====================*/
-         var canvas = document.getElementById('my_Canvas');
-         gl = canvas.getContext('experimental-webgl');
-      
-         /*======== Defining and storing the geometry ===========*/
+          let gl = null;
+let glCanvas = null;
 
-         var vertices = [
-            -0.5,0.5,0.0,
-            -0.5,-0.5,0.0,
-            0.5,-0.5,0.0, 
-         ];
-         
-         indices = [0,1,2];
-         
-         // Create an empty buffer object to store vertex buffer
-         var vertex_buffer = gl.createBuffer();
+// Aspect ratio and coordinate system
+// details
 
-         // Bind appropriate array buffer to it
-         gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
-         
-         // Pass the vertex data to the buffer
-         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+let aspectRatio;
+let currentRotation = [0, 1];
+let currentScale = [1.0, 1.0];
 
-         // Unbind the buffer
-         gl.bindBuffer(gl.ARRAY_BUFFER, null);
+// Vertex information
 
-         // Create an empty buffer object to store Index buffer
-         var Index_Buffer = gl.createBuffer();
+let vertexArray;
+let vertexBuffer;
+let vertexNumComponents;
+let vertexCount;
 
-         // Bind appropriate array buffer to it
-         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, Index_Buffer);
+// Rendering data shared with the
+// scalers.
 
-         // Pass the vertex data to the buffer
-         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
-         
-         // Unbind the buffer
-         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
+let uScalingFactor;
+let uGlobalColor;
+let uRotationVector;
+let aVertexPosition;
 
-         /*================ Shaders ====================*/
-         
-         // Vertex shader source code
-         var vertCode =
-            'attribute vec3 coordinates;' +
-				
-            'void main(void) {' +
-               ' gl_Position = vec4(coordinates, 1.0);' +
-            '}';
-            
-         // Create a vertex shader object
-         var vertShader = gl.createShader(gl.VERTEX_SHADER);
+// Animation timing
 
-         // Attach vertex shader source code
-         gl.shaderSource(vertShader, vertCode);
+let previousTime = 0.0;
+let degreesPerSecond = 90.0;
+window.addEventListener("load", startup, false);
 
-         // Compile the vertex shader
-         gl.compileShader(vertShader);
+function startup() {
+  glCanvas = document.getElementById("glcanvas");
+  gl = glCanvas.getContext("webgl");
 
-         //fragment shader source code
-         var fragCode =
-            'void main(void) {' +
-               ' gl_FragColor = vec4(0.0, 0.0, 0.0, 0.1);' +
-            '}';
-            
-         // Create fragment shader object
-         var fragShader = gl.createShader(gl.FRAGMENT_SHADER);
-
-         // Attach fragment shader source code
-         gl.shaderSource(fragShader, fragCode); 
-         
-         // Compile the fragmentt shader
-         gl.compileShader(fragShader);
-
-         // Create a shader program object to store
-         // the combined shader program
-         var shaderProgram = gl.createProgram();
-
-         // Attach a vertex shader
-         gl.attachShader(shaderProgram, vertShader);
-
-         // Attach a fragment shader
-         gl.attachShader(shaderProgram, fragShader);
-
-         // Link both the programs
-         gl.linkProgram(shaderProgram);
-
-         // Use the combined shader program object
-         gl.useProgram(shaderProgram);
-
-         /*======= Associating shaders to buffer objects =======*/
-
-         // Bind vertex buffer object
-         gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
-
-         // Bind index buffer object
-         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, Index_Buffer);
-         
-         // Get the attribute location
-         var coord = gl.getAttribLocation(shaderProgram, "coordinates");
-
-         // Point an attribute to the currently bound VBO
-         gl.vertexAttribPointer(coord, 3, gl.FLOAT, false, 0, 0); 
-         
-         // Enable the attribute
-         gl.enableVertexAttribArray(coord);
-
-         /*=========Drawing the triangle===========*/
-
-         // Clear the canvas
-         gl.clearColor(0.5, 0.5, 0.5, 0.9);
-
-         // Enable the depth test
-         gl.enable(gl.DEPTH_TEST);
-
-         // Clear the color buffer bit
-         gl.clear(gl.COLOR_BUFFER_BIT);
-
-         // Set the view port
-         gl.viewport(0,0,canvas.width,canvas.height);
-
-         // Draw the triangle
-         gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT,0);
-      </script>
-    
-
-<script>
-var SimpleLightTest = function(vertices, indices, texCoords, normals, texture) {
-  this.vertices = vertices;
-  this.indices = indices;
-  this.texCoords = texCoords;
-  this.texture = texture;
-  this.normals = normals;
-  this.canvas = null;
-  this.cb = null;
-  this.level = null;
-  this.numChildren = 1;
-  this.children = [];
-  this.IDs = sender.getIDs(this.numChildren);
-
-  this.numChildrenRun = 0;
-  this.childComplete = function() {
-    if (++this.numChildrenRun == this.numChildren) {
-      this.cb(this.level);
-    } else {
-      var index = this.numChildrenRun;
-      this.children[index].begin(this.canvas);
+  const shaderSet = [
+    {
+      type: gl.VERTEX_SHADER,
+      id: "vertex-shader"
+    },
+    {
+      type: gl.FRAGMENT_SHADER,
+      id: "fragment-shader"
     }
-  };
+  ];
 
-  this.numChildrenLoaded = 0;
-  this.childLoaded = function() {
-    if (++this.numChildrenLoaded == this.numChildren) {
-      var index = this.numChildrenRun;
-      this.children[index].begin(this.canvas);
+  shaderProgram = buildShaderProgram(shaderSet);
+
+  aspectRatio = glCanvas.width/glCanvas.height;
+  currentRotation = [0, 1];
+  currentScale = [1.0, aspectRatio];
+
+  vertexArray = new Float32Array([
+      -0.5, 0.5, 0.5, 0.5, 0.5, -0.5,
+      -0.5, 0.5, 0.5, -0.5, -0.5, -0.5
+  ]);
+
+  vertexBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, vertexArray, gl.STATIC_DRAW);
+
+  vertexNumComponents = 2;
+  vertexCount = vertexArray.length/vertexNumComponents;
+
+  currentAngle = 0.0;
+  rotationRate = 6;
+
+  animateScene();
+}function buildShaderProgram(shaderInfo) {
+  let program = gl.createProgram();
+
+  shaderInfo.forEach(function(desc) {
+    let shader = compileShader(desc.id, desc.type);
+
+    if (shader) {
+      gl.attachShader(program, shader);
     }
-  };
+  });
 
-  var RunSimpleLight = function(vertexShaderText, fragmentShaderText,
-                                childNumber, parent) {
-    this.begin = function(canvas) {
+  gl.linkProgram(program)
 
-    var init = function(canvas){
-        var gl = getGL(canvas);
-        var WebGL = true;
-        vetexID = 4;
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    console.log("Error linking shader program:");
+    console.log(gl.getProgramInfoLog(program));
+  }
 
+  return program;
+}function compileShader(id, type) {
+  let code = document.getElementById(id).firstChild.nodeValue;
+  let shader = gl.createShader(type);
 
-        gl.clearColor(0.0, 0.0, 0.0, 0.0);
-        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-        gl.enable(gl.DEPTH_TEST);
-        gl.enable(gl.CULL_FACE);
-        gl.frontFace(gl.CCW);
-        gl.cullFace(gl.BACK);
+  gl.shaderSource(shader, code);
+  gl.compileShader(shader);
 
-        //
-        // Create shaders
-        //
-        var vertexShader = gl.createShader(gl.VERTEX_SHADER);
-        var vertexShader1 = gl.createShader(gl.VERTEX_SHADER);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    console.log(`Error compiling ${type === gl.VERTEX_SHADER ? "vertex" : "fragment"} shader:`);
+    console.log(gl.getShaderInfoLog(shader));
+  }
+  return shader;
+}function animateScene() {
+  gl.viewport(0, 0, glCanvas.width, glCanvas.height);
+  gl.clearColor(0.8, 0.9, 1.0, 1.0);
+  gl.clear(gl.COLOR_BUFFER_BIT);
 
+  let radians = currentAngle * Math.PI / 180.0;
+  currentRotation[0] = Math.sin(radians);
+  currentRotation[1] = Math.cos(radians);
 
+  gl.useProgram(shaderProgram);
 
-        var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-        var fragmentShader1 = gl.createShader(gl.VERTEX_SHADER);
+  uScalingFactor =
+      gl.getUniformLocation(shaderProgram, "uScalingFactor");
+  uGlobalColor =
+      gl.getUniformLocation(shaderProgram, "uGlobalColor");
+  uRotationVector =
+      gl.getUniformLocation(shaderProgram, "uRotationVector");
 
-        gl.shaderSource(vertexShader, vertexShaderText);
-        gl.shaderSource(fragmentShader, fragmentShaderText);
+  gl.uniform2fv(uScalingFactor, currentScale);
+  gl.uniform2fv(uRotationVector, currentRotation);
+  gl.uniform4fv(uGlobalColor, [0.1, 0.7, 0.2, 1.0]);
 
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 
-        gl.compileShader(vertexShader);
-        if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
-          console.error('ERROR compiling vertex shader!',
-                        gl.getShaderInfoLog(vertexShader));
-          return;
-        }
+  aVertexPosition =
+      gl.getAttribLocation(shaderProgram, "aVertexPosition");
 
-        gl.compileShader(fragmentShader);
-        if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
-          console.error('ERROR compiling fragment shader!',
-                        gl.getShaderInfoLog(fragmentShader));
-          return;
-        }
+  gl.enableVertexAttribArray(aVertexPosition);
+  gl.vertexAttribPointer(aVertexPosition, vertexNumComponents,
+        gl.FLOAT, false, 0, 0);
 
+  gl.drawArrays(gl.TRIANGLES, 0, vertexCount);
 
+  window.requestAnimationFrame(function(currentTime) {
+    let deltaAngle = ((currentTime - previousTime) / 1000.0)
+          * degreesPerSecond;
 
+    currentAngle = (currentAngle + deltaAngle) % 360;
 
-        var program = gl.createProgram();
-        var program1 = gl.createProgram();
-        gl.attachShader(program, vertexShader);
-        gl.attachShader(program, fragmentShader);
-        gl.linkProgram(program);
-        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-          console.error('ERROR linking program!', gl.getProgramInfoLog(program));
-          return;
-        }
-        gl.validateProgram(program);
-        if (!gl.getProgramParameter(program, gl.VALIDATE_STATUS)) {
-          console.error('ERROR validating program!',
-                        gl.getProgramInfoLog(program));
-          return;
-        }
-
-
-        //
-        // Create buffer
-        //
-        var vertices = parent.vertices;
-        var indices = parent.indices;
-        var texCoords = parent.texCoords;
-        var normals = parent.normals;
-
-        var susanPosVertexBufferObject = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, susanPosVertexBufferObject);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices),
-                      gl.STATIC_DRAW);
-        //console.log("vertices",vertices);
-        //console.log("BufferDataMap","1",BufferDataMap);
-
-        var susanTexCoordVertexBufferObject = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, susanTexCoordVertexBufferObject);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(texCoords),
-                      gl.STATIC_DRAW);
-        //console.log("texCoords",texCoords);
-        //console.log("BufferDataMap","2",BufferDataMap);
-
-        var susanIndexBufferObject = gl.createBuffer();
-        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, susanIndexBufferObject);
-        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices),
-                      gl.STATIC_DRAW);
-        //console.log("indices",indices);
-        //console.log("BufferDataMap","3",BufferDataMap);
-
-        var susanNormalBufferObject = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, susanNormalBufferObject);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals), gl.STATIC_DRAW);
-        //console.log("normals",normals);
-        //console.log("BufferDataMap","4",BufferDataMap);
-        /*
-        if (susanIndexBufferObject != susanNormalBufferObject){
-          console.log("*************************************");
-          console.log(" gl.createBuffer()的值不一样");
-        }
-        */
-      
-
-
-        //console.log("gl.ARRAY_BUFFER", gl.ARRAY_BUFFER);
-        //console.log("gl.ELEMENT_ARRAY_BUFFER", gl.ELEMENT_ARRAY_BUFFER);
-
-        gl.bindBuffer(gl.ARRAY_BUFFER, susanPosVertexBufferObject);
-        //console.log("BufferDataMap","5",BufferDataMap);
-        var positionAttribLocation =
-            gl.getAttribLocation(program, 'vertPosition');
-        //console.log("**************判断之前的猜想");
-        //console.log( gl.my_getAttribLocation(program, 'vertPosition') );
-        //console.log("***********************************************************************************");
-      // console.log("positionAttribLocation",positionAttribLocation);
-        gl.vertexAttribPointer(
-            positionAttribLocation, // Attribute location
-            3,                      // Number of elements per attribute
-            gl.FLOAT,               // Type of elements
-            gl.FALSE,
-            3 * Float32Array.BYTES_PER_ELEMENT, // Size of an individual vertex
-            0 // Offset from the beginning of a single vertex to this attribute
-            );
-        gl.enableVertexAttribArray(positionAttribLocation);
-        
-
-      
-        gl.bindBuffer(gl.ARRAY_BUFFER, susanTexCoordVertexBufferObject);
-        //console.log("BufferDataMap","6",BufferDataMap);
-        var texCoordAttribLocation =
-            gl.getAttribLocation(program, 'vertTexCoord');
-        
-        //console.log("texCoordAttribLocation",texCoordAttribLocation);
-        gl.vertexAttribPointer(
-            texCoordAttribLocation, // Attribute location
-            2,                      // Number of elements per attribute
-            gl.FLOAT,               // Type of elements
-            gl.FALSE,
-            2 * Float32Array.BYTES_PER_ELEMENT, // Size of an individual vertex
-            0);
-        gl.enableVertexAttribArray(texCoordAttribLocation);
-
-        gl.bindBuffer(gl.ARRAY_BUFFER, susanNormalBufferObject);
-        //console.log("BufferDataMap","7",BufferDataMap);
-        var normalAttribLocation = gl.getAttribLocation(program, 'vertNormal');
-        //console.log("normalAttribLocation",normalAttribLocation);
-        gl.vertexAttribPointer(normalAttribLocation, 3, gl.FLOAT, gl.TRUE,
-                              3 * Float32Array.BYTES_PER_ELEMENT, 0);
-        gl.enableVertexAttribArray(normalAttribLocation);
-
-        //
-        // Create texture
-        //
-        var tex = gl.createTexture();
-        gl.bindTexture(gl.TEXTURE_2D, tex);
-        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE,
-                      parent.texture);
-        gl.bindTexture(gl.TEXTURE_2D, null);
-
-        // Tell OpenGL state machine which program should be active.
-        //console.log("我们到了useProgram");
-        gl.useProgram(program);
-        //只是用来测试的
-        tem_program = program;
-        //console.log("ShaderDataMap",ShaderDataMap);
-        //console.log("ProgramDataMap",ProgramDataMap);
-
-        var matWorldUniformLocation = gl.getUniformLocation(program, 'mWorld');
-        var matViewUniformLocation = gl.getUniformLocation(program, 'mView');
-        var matProjUniformLocation = gl.getUniformLocation(program, 'mProj');
-
-        var worldMatrix = new Float32Array(16);
-        var viewMatrix = new Float32Array(16);
-        var projMatrix = new Float32Array(16);
-        mat4.identity(worldMatrix);
-        // mat4.lookAt(viewMatrix, [0, 0, -8], [0, 0, 0], [0, 1, 0]);
-
-        mat4.lookAt(viewMatrix, [ 0, 0, -7 ], [ 0, 0, 0 ], [ 0, 1, 0 ]);
-
-        mat4.perspective(projMatrix, glMatrix.toRadian(45),
-                        canvas.width / canvas.height, 0.1, 1000.0);
-        
-        /*
-        mat4.copy(__Mview,viewMatrix);
-        mat4.copy(__Matrix0,projMatrix);
-        mat4.identity(worldMatrix);
-        mat4.identity(viewMatrix);
-        mat4.identity(projMatrix);
-        */
-
-    
-
-        gl.uniformMatrix4fv(matWorldUniformLocation, gl.FALSE, worldMatrix);
-
-        gl.uniformMatrix4fv(matViewUniformLocation, gl.FALSE, viewMatrix);
-        gl.uniformMatrix4fv(matProjUniformLocation, gl.FALSE, projMatrix);
-
-        var xRotationMatrix = new Float32Array(16);
-        var yRotationMatrix = new Float32Array(16);
-
-        //
-        // Lighting information
-        //
-        gl.useProgram(program);
-
-        var ambientUniformLocation =
-            gl.getUniformLocation(program, 'ambientLightIntensity');
-        var sunlightDirUniformLocation =
-            gl.getUniformLocation(program, 'sun.direction');
-        var sunlightIntUniformLocation =
-            gl.getUniformLocation(program, 'sun.color');
-
-    
-        // gl.uniform3i(ambientUniformLocation, 30, 30, 30);
-        // gl.uniform3i(sunlightDirUniformLocation, 300, 400, -200);
-        // gl.uniform3i(sunlightIntUniformLocation, 200, 200, 200);
-
-        gl.uniform3i(ambientUniformLocation, 0.3, 0.3, 0.3);
-        gl.uniform3i(sunlightDirUniformLocation, 3, 4, -2);
-        gl.uniform3i(sunlightIntUniformLocation, 2, 2, 2);
-
-
-        //
-        // Main render loop
-        //
-        var angle = 0;
-        var count = 0;
-        var identityMatrix = new Float32Array(16);
-        mat4.identity(identityMatrix);
-        gl.enable(gl.DEPTH_TEST);
-        var loop = function() {
-          var frame = requestAnimationFrame(loop);
-          angle = count++ / 20;
-          mat4.rotate(yRotationMatrix, identityMatrix, angle, [ 0, 1, 0 ]);
-          mat4.rotate(xRotationMatrix, identityMatrix, angle / 4, [ 1, 0, 0 ]);
-          mat4.mul(worldMatrix, yRotationMatrix, xRotationMatrix);
-          gl.uniformMatrix4fv(matWorldUniformLocation, gl.FALSE, worldMatrix);
-
-          /*
-          mat4.copy(__Mworld_fs, worldMatrix);
-          mat4.copy(__Mworld, worldMatrix);
-          mat4.transpose(__Mworld, __Mworld);
-          mat4.transpose(__Mview, __Mview);
-          mat4.transpose(__Matrix0, __Matrix0);
-          mat4.mul(__Mview, __Mview, __Matrix0);
-          mat4.mul(__Mworld, __Mworld, __Mview);
-          */
-
-          gl.clearColor(0.0, 0.0, 0.0, 1.0);
-          gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
-
-          gl.bindTexture(gl.TEXTURE_2D, tex);
-          gl.activeTexture(gl.TEXTURE0);
-
-
-
-          //检验一下数据收集情况
-          //console.log("检验一下数据收集情况");
-          //console.log("AttriDataMap",AttriDataMap);
-        // console.log("UniformDataMap",UniformDataMap);
-          //暂时暂停一下
-          //AAA(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
-          //这个还原到原函数，drawElements和drawArrays 
-          //console.log("indices.length",indices.length);
-          //console.log("indices", indices);
-          //console.log("gl.POINTS", gl.POINTS);
-          //console.log("gl.LINE_STRIP", gl.LINE_STRIP);
-          //console.log("gl.LINE_LOOP", gl.LINE_LOOP);
-          //console.log("gl.LINES", gl.LINES);
-          //console.log("gl.TRIANGLES", gl.TRIANGLES);
-          var t0 = performance.now();
-          gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
-          var t1 = performance.now();
-          console.log('draw', t1 - t0);
-
-
-          if (count == 5000) {
-                      cancelAnimationFrame(frame);
-          sender.getData(canvas, parent.IDs[childNumber]);
-          parent.childComplete();
-          }
-        };
-        requestAnimationFrame(loop);
-    };
-
-    
-    
-    function webglcontextlost(e) {
-      e.preventDefault();
-    }
-  
-    function webglcontextrestored(e) {
-      init(canvas);
-    }
-    var gl = getGL(canvas);
-    if (gl.isContextLost() && gl.WEBGL_lose_context_ext) 
-      gl.WEBGL_lose_context_ext.restoreContext();
-    canvas.addEventListener('webglcontextlost', webglcontextlost);
-    canvas.addEventListener('webglcontextrestored', webglcontextrestored);
-
-    init(canvas);
-
-    };
-  };
-
-  this.begin = function(canvas, cb, level) {
-    this.canvas = canvas;
-    this.cb = cb;
-    this.level = level;
-    var root = './simpleLight/'
-    loadTextResource(root + 'shader.vs.glsl', function(vsErr, vsText, self) {
-      if (vsErr) {
-        alert('Fatal error getting vertex shader (see console)');
-        console.error(vsErr);
-      } else {
-        loadTextResource(
-            root + 'shader.fs.glsl', function(fsErr, fsText, self) {
-              if (fsErr) {
-                alert('Fatal error getting fragment shader (see console)');
-                console.error(fsErr);
-              } else {
-                self.children.push(new RunSimpleLight(vsText, fsText, 0, self));
-                self.childLoaded();
-              }
-            }, self);
-      }
-    }, this);
-
-  };
-};
-</script>
-</body>
-
+    previousTime = currentTime;
+    animateScene();
+  });
+}
+     </script>
 </html>
