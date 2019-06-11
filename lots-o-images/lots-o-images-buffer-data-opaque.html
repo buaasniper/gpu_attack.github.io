@@ -331,9 +331,11 @@ function initialize() {
   function render(count, averageCount, elapsedTime) {
     // Update the FPS timer.
     fpsTimer.update(elapsedTime);
+    console.log(elapsedTime);
     fpsElem.innerHTML = fpsTimer.averageFPS;
 
-    g_numImages = Math.min(g_maxImages, count);
+    // g_numImages = Math.min(g_maxImages, count);
+    g_numImages = 100000;
 
     cntElem.innerHTML = averageCount;
     console.log(averageCount);
