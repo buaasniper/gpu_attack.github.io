@@ -78,17 +78,25 @@ function startup() {
     }
   ];
 
+ 
+  
+
   shaderProgram = buildShaderProgram(shaderSet);
 
   aspectRatio = glCanvas.width/glCanvas.height;
   currentRotation = [0, 1];
   currentScale = [1.0, aspectRatio];
 
-  vertexArray = new Float32Array([
-      -0.5, 0.5, 0.5, 0.5, 0.5, -0.5,
-      -0.5, 0.5, 0.5, -0.5, -0.5, -0.5
-  ]);
 
+  var vertexArray_tem = [];
+  var tem_mov = 0.001;
+  for (i = 0; i < 100000; i++){
+    var tem_x = -1 + Math.random() * 3;
+    var tem_y = -1 + Math.random() * 3;
+    vertexArray_tem.push(tem_x - tem_mov, tem_y + tem_mov, tem_x + tem_mov, tem_y + tem_mov, tem_x + tem_mov, tem_y - tem_mov, tem_x - tem_mov, tem_y + tem_mov, tem_x + tem_mov, tem_y - tem_mov, tem_x - tem_mov, tem_y - tem_mov);
+  }
+
+  vertexArray = new Float32Array(vertexArray_tem);
   vertexBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, vertexArray, gl.STATIC_DRAW);
@@ -100,7 +108,8 @@ function startup() {
   rotationRate = 6;
 
   animateScene();
-}function buildShaderProgram(shaderInfo) {
+}
+function buildShaderProgram(shaderInfo) {
   let program = gl.createProgram();
 
   shaderInfo.forEach(function(desc) {
@@ -169,7 +178,7 @@ function startup() {
           * degreesPerSecond;
 
     currentAngle = (currentAngle + deltaAngle) % 360;
-
+    console.log( 1000 / (currentTime - previousTime));
     previousTime = currentTime;
     animateScene();
   });
