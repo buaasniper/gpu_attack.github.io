@@ -57,6 +57,9 @@ let uGlobalColor;
 let uRotationVector;
 let aVertexPosition;
 
+  var count = 0;
+  var collectdata = [];
+
 // Animation timing
 
 let previousTime = 0.0;
@@ -64,6 +67,7 @@ let degreesPerSecond = 90.0;
 window.addEventListener("load", startup, false);
 
 var vertexArray_tem = [];
+var vertexArray_pre = [];
 function startup() {
   glCanvas = document.getElementById("glcanvas");
   gl = glCanvas.getContext("webgl");
@@ -143,20 +147,20 @@ function buildShaderProgram(shaderInfo) {
   return shader;
 }function animateScene() {
 
-  var tem_xmov = (-1 + Math.random() * 2) / 50;
-  var tem_ymov = (-1 + Math.random() * 2) / 50;
-  for (i = 0; i < vertexArray.length; i += 2){
-    vertexArray_tem[i] += tem_xmov;
-    if (vertexArray_tem[i] < -1)
-      vertexArray_tem[i]++;
-    if (vertexArray_tem[i] > 1)
-      vertexArray_tem[i]--;
-    vertexArray_tem[i + 1] += tem_ymov;
-    if (vertexArray_tem[i+1] < -1)
-      vertexArray_tem[i+1]++;
-    if (vertexArray_tem[i+1] > 1)
-      vertexArray_tem[i+1]--;
-  }
+  // var tem_xmov = (-1 + Math.random() * 2) / 50;
+  // var tem_ymov = (-1 + Math.random() * 2) / 50;
+  // for (i = 0; i < vertexArray.length; i += 2){
+  //   vertexArray_tem[i] += tem_xmov;
+  //   if (vertexArray_tem[i] < -1)
+  //     vertexArray_tem[i]++;
+  //   if (vertexArray_tem[i] > 1)
+  //     vertexArray_tem[i]--;
+  //   vertexArray_tem[i + 1] += tem_ymov;
+  //   if (vertexArray_tem[i+1] < -1)
+  //     vertexArray_tem[i+1]++;
+  //   if (vertexArray_tem[i+1] > 1)
+  //     vertexArray_tem[i+1]--;
+  // }
 
   vertexArray = new Float32Array(vertexArray_tem);
   vertexBuffer = gl.createBuffer();
@@ -197,13 +201,28 @@ function buildShaderProgram(shaderInfo) {
 
   gl.drawArrays(gl.TRIANGLES, 0, vertexCount);
 
+
   window.requestAnimationFrame(function(currentTime) {
     let deltaAngle = ((currentTime - previousTime) / 1000.0)
           * degreesPerSecond;
 
-    // currentAngle = (currentAngle + deltaAngle) % 360;
-    currentAngle = 0;
-    console.log( 1000 / (currentTime - previousTime));
+    currentAngle = (currentAngle + deltaAngle) % 360;
+    count ++;
+    console.log(count);
+    collectdata.push(currentTime - previousTime);
+    if (count == 100){
+      console.log(collectdata);
+      collectdata = [];
+    }
+    if (count == 200){
+      console.log(collectdata);
+      collectdata = [];
+    }
+    if (count == 300){
+      console.log(collectdata);
+      collectdata = [];
+    }
+    // console.log( (currentTime - previousTime));
     previousTime = currentTime;
     animateScene();
   });
