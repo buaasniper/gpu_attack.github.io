@@ -14,12 +14,39 @@
         #ifdef GL_ES
           precision highp float;
         #endif
-      
+        uniform vec2 uScalingFactor;
+        uniform vec2 uRotationVector;
         uniform vec4 uGlobalColor;
+        uniform sampler2D u_texture;
+        uniform mat4 u_matrix1,u_matrix2,u_matrix3,u_matrix4,u_matrix5,u_matrix6,u_matrix7,u_matrix8,u_matrix9,u_matrix10;
+        mat4 testmap[255];
+
       
         void main() {
           vec2 ss = vec2 (gl_FragCoord.x / 1024.0, gl_FragCoord.y / 1024.0);
-          gl_FragColor = vec4(ss, 0.0, 1.0);
+          vec2 t1 = ss * uScalingFactor;
+          vec2 t2 = t1 * uRotationVector;
+          vec2 t3 = t2 * t1;
+          mat4 mt1 = u_matrix1 * u_matrix2 * u_matrix3 * u_matrix4 * u_matrix5;
+          mat4 mt2 = u_matrix2 * u_matrix3 * u_matrix4 * u_matrix5 * u_matrix6;
+          mat4 mt3 = u_matrix3 * u_matrix4 * u_matrix5 * u_matrix6 * u_matrix7;
+          mat4 mt4 = u_matrix4 * u_matrix5 * u_matrix6 * u_matrix7 * u_matrix8;
+          mat4 mt5 = u_matrix5 * u_matrix6 * u_matrix7 * u_matrix8 * u_matrix9;
+          mat4 mt6 = u_matrix6 * u_matrix7 * u_matrix8 * u_matrix9 * u_matrix10;
+          mat4 mt7 = mt1 + mt2 + mt3 + mt4 + mt5 + mt6;
+          testmap[0] = mt7;
+          for (int i = 1; i < 255; i++){
+            mt1 = u_matrix1 * u_matrix2 * u_matrix3 * u_matrix4 * u_matrix5 * testmap[i - 1];
+            mt2 = u_matrix2 * u_matrix3 * u_matrix4 * u_matrix5 * u_matrix6;
+            mt3 = u_matrix3 * u_matrix4 * u_matrix5 * u_matrix6 * u_matrix7;
+            mt4 = u_matrix4 * u_matrix5 * u_matrix6 * u_matrix7 * u_matrix8;
+            mt5 = u_matrix5 * u_matrix6 * u_matrix7 * u_matrix8 * u_matrix9;
+            mt6 = u_matrix6 * u_matrix7 * u_matrix8 * u_matrix9 * u_matrix10;
+            testmap[i] = mt1 + mt2 + mt3 + mt4 + mt5 + mt6;
+          }
+          vec4 t4 = vec4(t3,t2) * testmap[254];
+          t4 = t4 * vec4(t1, t2);
+          gl_FragColor = texture2D(u_texture, t4.xy);
         }
       </script><canvas id="glcanvas" width="1024" height="1024">
         Oh no! Your browser doesn't support canvas!
@@ -106,7 +133,29 @@ function startup() {
   currentAngle = 0.0;
   rotationRate = 6;
 
+  var texture = gl.createTexture();
+gl.bindTexture(gl.TEXTURE_2D, texture);
+ 
+// Fill the texture with a 1x1 blue pixel.
+gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE,
+              new Uint8Array([0, 0, 255, 255]));
+ 
+// Asynchronously load an image
+var image = new Image();
+image.src = "image1.jpg";
+image.addEventListener('load', function() {
+  // Now that the image has loaded make copy it to the texture.
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA,gl.UNSIGNED_BYTE, image);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.generateMipmap(gl.TEXTURE_2D);
   animateScene();
+});
+
+  
 }
 function buildShaderProgram(shaderInfo) {
   let program = gl.createProgram();
@@ -180,9 +229,72 @@ function buildShaderProgram(shaderInfo) {
   uRotationVector =
       gl.getUniformLocation(shaderProgram, "uRotationVector");
 
-  gl.uniform2fv(uScalingFactor, currentScale);
-  gl.uniform2fv(uRotationVector, currentRotation);
-  gl.uniform4fv(uGlobalColor, [0.1, 0.7, 0.2, 1.0]);
+  var t1 = Math.random();
+  var t2 = Math.random();
+  gl.uniform2fv(uScalingFactor, [t1,t2]);
+  var t1 = Math.random();
+  var t2 = Math.random();
+  gl.uniform2fv(uRotationVector, [t1,t2]);
+  var t1 = Math.random();
+  var t2 = Math.random();
+  var t3 = Math.random();
+  var t4 = Math.random();
+  gl.uniform4fv(uGlobalColor, [t1,t2,t3,t4]);
+
+
+
+  var matrixLocation1 = gl.getUniformLocation(shaderProgram, "u_matrix1");
+  var matrixLocation2 = gl.getUniformLocation(shaderProgram, "u_matrix2");
+  var matrixLocation3 = gl.getUniformLocation(shaderProgram, "u_matrix3");
+  var matrixLocation4 = gl.getUniformLocation(shaderProgram, "u_matrix4");
+  var matrixLocation5 = gl.getUniformLocation(shaderProgram, "u_matrix5");
+  var matrixLocation6 = gl.getUniformLocation(shaderProgram, "u_matrix6");
+  var matrixLocation7 = gl.getUniformLocation(shaderProgram, "u_matrix7");
+  var matrixLocation8 = gl.getUniformLocation(shaderProgram, "u_matrix8");
+  var matrixLocation9 = gl.getUniformLocation(shaderProgram, "u_matrix9");
+  var matrixLocation10 = gl.getUniformLocation(shaderProgram, "u_matrix10");
+
+  var tem = [];
+  for (i = 0; i < 16; i++)
+    tem.push(Math.random());
+  gl.uniformMatrix4fv(matrixLocation1, false, tem);
+  var tem = [];
+  for (i = 0; i < 16; i++)
+    tem.push(Math.random());
+  gl.uniformMatrix4fv(matrixLocation2, false, tem);
+  var tem = [];
+  for (i = 0; i < 16; i++)
+    tem.push(Math.random());
+  gl.uniformMatrix4fv(matrixLocation3, false, tem);
+  var tem = [];
+  for (i = 0; i < 16; i++)
+    tem.push(Math.random());
+  gl.uniformMatrix4fv(matrixLocation4, false, tem);
+  var tem = [];
+  for (i = 0; i < 16; i++)
+    tem.push(Math.random());
+  gl.uniformMatrix4fv(matrixLocation5, false, tem);
+  var tem = [];
+  for (i = 0; i < 16; i++)
+    tem.push(Math.random());
+  gl.uniformMatrix4fv(matrixLocation6, false, tem);
+  var tem = [];
+  for (i = 0; i < 16; i++)
+    tem.push(Math.random());
+  gl.uniformMatrix4fv(matrixLocation7, false, tem);
+  var tem = [];
+  for (i = 0; i < 16; i++)
+    tem.push(Math.random());
+  gl.uniformMatrix4fv(matrixLocation8, false, tem);
+  var tem = [];
+  for (i = 0; i < 16; i++)
+    tem.push(Math.random());
+  gl.uniformMatrix4fv(matrixLocation9, false, tem);
+  var tem = [];
+  for (i = 0; i < 16; i++)
+    tem.push(Math.random());
+  gl.uniformMatrix4fv(matrixLocation10, false, tem);
+
 
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 
