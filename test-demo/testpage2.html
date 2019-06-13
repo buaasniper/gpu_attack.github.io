@@ -19,7 +19,7 @@
         uniform vec4 uGlobalColor;
         uniform sampler2D u_texture;
         uniform mat4 u_matrix1,u_matrix2,u_matrix3,u_matrix4,u_matrix5,u_matrix6,u_matrix7,u_matrix8,u_matrix9,u_matrix10;
-        mat4 testmap[255];
+        mat4 testmap[50];
 
       
         void main() {
@@ -35,7 +35,7 @@
           mat4 mt6 = u_matrix6 * u_matrix7 * u_matrix8 * u_matrix9 * u_matrix10;
           mat4 mt7 = mt1 + mt2 + mt3 + mt4 + mt5 + mt6;
           testmap[0] = mt7;
-          for (int i = 1; i < 255; i++){
+          for (int i = 1; i < 50; i++){
             mt1 = u_matrix1 * u_matrix2 * u_matrix3 * u_matrix4 * u_matrix5 * testmap[i - 1];
             mt2 = u_matrix2 * u_matrix3 * u_matrix4 * u_matrix5 * u_matrix6;
             mt3 = u_matrix3 * u_matrix4 * u_matrix5 * u_matrix6 * u_matrix7;
@@ -44,7 +44,7 @@
             mt6 = u_matrix6 * u_matrix7 * u_matrix8 * u_matrix9 * u_matrix10;
             testmap[i] = mt1 + mt2 + mt3 + mt4 + mt5 + mt6;
           }
-          vec4 t4 = vec4(t3,t2) * testmap[254];
+          vec4 t4 = vec4(t3,t2) * testmap[49];
           t4 = t4 * vec4(t1, t2);
           gl_FragColor = texture2D(u_texture, t4.xy);
         }
