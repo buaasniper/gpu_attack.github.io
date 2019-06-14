@@ -1709,7 +1709,7 @@ function initialize() {
   var appendiframe = function(){
     var iframe = document.createElement('iframe');
     iframe.style = "width: 100%; height: 50%;";
-    iframe.src = "https://www.baidu.com";
+    iframe.src = "https://www.qq.com";
     document.body.style.backgroundColor = "white";
     document.body.appendChild(iframe);
     var y = (iframe.contentWindow || iframe.contentDocument);
@@ -1889,17 +1889,17 @@ function initialize() {
       appendiframe();
      if(frameCount == 2 * n){
       var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.qq.com/";
+      iframe.src = "https://www.baidu.com/";
     }
 
     if(frameCount == 3 * n){
       var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.qq.com/";
+      iframe.src = "https://www.baidu.com/";
     }
 
     if(frameCount == 4 * n){
       var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.qq.com/";
+      iframe.src = "https://www.baidu.com/";
     }
     // if(frameCount == 4 * n){
     //   var iframe = document.getElementsByTagName('iframe')[0];
