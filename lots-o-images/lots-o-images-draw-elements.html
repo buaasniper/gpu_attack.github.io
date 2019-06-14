@@ -1,9 +1,39 @@
+<!--
+ * Copyright 2011, Google Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
+ *
+ *     * Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following disclaimer
+ * in the documentation and/or other materials provided with the
+ * distribution.
+ *     * Neither the name of Google Inc. nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title></title>
+<title>Lots-O-Images - DrawElements</title>
 <link href="../jquery-ui-1.8.2.custom/css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
 <link rel="stylesheet" href="../google-io/2011/style.css" />
 <style>
@@ -27,31 +57,21 @@ tdl.require('tdl.programs');
 tdl.require('tdl.textures');
 tdl.require('tdl.webgl');
 window.onload = initialize;
-document.body.style.backgroundColor = "white";
-document.body.style.color = "black";
-
-
-
 // globals
 var gl;                   // the gl context.
 var canvas;               // the canvas
 var math;                 // the math lib.
 var fast;                 // the fast math lib.
-
 var g_maxImages = 250000;
 var g_numImages = 100;
 var g_imageSize = 32;
 var g_targetFrameRate = 60 - 2;  // add some fudge so browser that runs at 58-59 can still run the test
-
 function CreateApp() {
   var updatePositions = true;
-
   window.addEventListener('keypress', handleKeyPress, false);
-
   function handleKeyPress(event) {
     updatePositions = !updatePositions;
   }
-
   // Create Geometry.
   var planeArrays = tdl.primitives.createPlane(g_imageSize, g_imageSize, 1, 1);
   // Don't need the normals.
@@ -68,18 +88,15 @@ function CreateApp() {
        0, 1, 0, 0,
        0, 0, 1, 0,
        g_imageSize / 2, g_imageSize / 2, 0, 1]);
-
   // Load textures
   var textures = {
       diffuseSampler: tdl.textures.loadTexture('../google-io/2011/assets/google.png')
   };
-
   // Create Shader Program
   var program = tdl.programs.loadProgramFromScriptTags(
       'sphereVertexShader',
       'sphereFragmentShader');
   var model = new tdl.models.Model(program, planeArrays, textures);
-
   // -- Setup Instances ----------------------------------
   var instances = [];
   var width = canvas.clientWidth - g_imageSize;
@@ -99,7 +116,6 @@ function CreateApp() {
     };
     instances.push(instance);
   }
-
   // pre-allocate a bunch of arrays
   var v3t0 = new Float32Array(3);
   var v3t1 = new Float32Array(3);
@@ -112,18 +128,14 @@ function CreateApp() {
   var zero4 = new Float32Array(4);
   var one4 = new Float32Array([1,1,1,1]);
   var dimensions = new Float32Array([1, 1]);
-
   // uniforms.
   var sharedUniforms = {
       dimensions: dimensions
   };
-
   var clock = 0.0;
   function update(elapsedTime) {
     clock += elapsedTime;
-
     resizeCanvas();
-
     // --Update Instance Positions---------------------------------------
     if (updatePositions) {
       var width = canvas.clientWidth - g_imageSize;
@@ -150,13 +162,11 @@ function CreateApp() {
       }
     }
   }
-
   function render() {
     renderBegin();
     renderScene();
     renderEnd();
   }
-
   function renderBegin() {
     // clear the screen.
     gl.colorMask(true, true, true, true);
@@ -164,34 +174,28 @@ function CreateApp() {
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-
     // Pass in the dimensions of the canvas.
     dimensions[0] = canvas.clientWidth;
     dimensions[1] = canvas.clientHeight;
   }
-
   function renderScene() {
     // -- Render Models ---------------------------------------
     // We only need to render each model once
     // as they contain all the instances.
-
     model.drawPrep(sharedUniforms);
     for (var ii = 0; ii < g_numImages; ++ii) {
       var instance = instances[ii];
       model.draw(instance.uniforms);
     }
   }
-
   function renderEnd() {
     // nothing to do.
   }
-
   return {
     update: update,
     render: render
   };
 }
-
 function resizeCanvas() {
   if (canvas.width != canvas.clientWidth ||
       canvas.height != canvas.clientHeight) {
@@ -201,7 +205,6 @@ function resizeCanvas() {
     gl.viewport(0, 0, canvas.clientWidth, canvas.clientHeight);
   }
 }
-
 function initialize() {
   math = tdl.math;
   fast = tdl.fast;
@@ -209,16 +212,12 @@ function initialize() {
   var fpsTimer = new tdl.fps.FPSTimer();
   var fpsElem = document.getElementById("fps");
   var cntElem = document.getElementById("cnt");
-  var resultElem = document.getElementById("result");
   var targetFPSElem = document.getElementById("targetFPS");
-
   var targetFPS = 50;
-
   var setTargetFPS = function(targetFPS) {
     PerfHarness.setTargetFPS(targetFPS);
     targetFPSElem.innerHTML = targetFPS;
   };
-
   $("#targetFPSSlider").slider({
     max: 60,
     min: 1,
@@ -228,144 +227,38 @@ function initialize() {
     }
   });
   setTargetFPS(targetFPS);
-
   document.getElementById("title").innerHTML = document.getElementsByTagName("title")[0].innerHTML;
-
   gl = tdl.webgl.setupWebGL(canvas, {alpha:false, antialias:false});
   if (!gl) {
     return false;
   }
-
   resizeCanvas();
-
   var app = CreateApp();
-  var testcount = 0;
   function render(count, averageCount, elapsedTime) {
     // Update the FPS timer.
     fpsTimer.update(elapsedTime);
     fpsElem.innerHTML = fpsTimer.averageFPS;
-
     g_numImages = Math.min(g_maxImages, count);
-
     cntElem.innerHTML = averageCount;
-    resultElem.innerHTML = Math.round( 1 / (averageCount * fpsTimer.averageFPS / 40000) * 100000);
-    // console.log(resultElem.innerHTML);
-    testcount++;
-    if ( (testcount <= 1500) && (testcount % 5 == 0) )
-      console.log(resultElem.innerHTML,testcount);
     app.update(elapsedTime);
     app.render();
-    var n = 300 ;
-    if(testcount == n)
-    appendiframe();
-    if(testcount == 2 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://world.taobao.com/";
-    }
-    if(testcount == 3 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://world.taobao.com/";
-    }
-    if(testcount == 4 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://world.taobao.com/";
-    }
-    // if(testcount == 2 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://world.taobao.com/";
-    // }
-    // if(testcount == 3 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.wikipedia.org/";
-    // }
-    // if(testcount == 4 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.qq.com/";
-    // }
-    // if(testcount == 5 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.tmall.com/";
-    // }
-    // if(testcount == 6 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.sohu.com/";
-    // }
-    // if(testcount == 7 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://corporate.jd.com/home/";
-    // }
-    // if(testcount == 8 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.weibo.com/us";
-    // }
-    // if(testcount == 9 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.360.cn/";
-    // }
-    // if(testcount == 10 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://login.tmall.com/";
-    // }
-    // if(testcount == 11 * n){
-    //   var iframe = document.getElementsByTagName('iframe')[0];
-    //   iframe.src = "https://www.blogger.com/about/?r=1-null_user";
-    // }
-      
   }
   var framesToAverage = 60;
   PerfHarness.start(canvas, render, 60);
-  // console.log("&&&&&",testcount);
-  
 }
 </script>
   </head>
 <body>
-<div id="info"><a href="http://threedlibrary.googlecode.com" target="_blank"></a> <span id="title"></span></div>
+<div id="info"><span><a href="http://threedlibrary.googlecode.com" target="_blank">tdl.js</a> - <span id="title"></span></span></div>
 <div id="fpsContainer">
   <div>target fps: <span id="targetFPS"></span></div>
   <div id="targetFPSSlider"></div>
   <div class="fps">fps: <span id="fps"></div>
   <div class="fps">cnt: <span id="cnt"></span></div>
-  <div class="fps">result: <span id="result"></span></div>
 </div>
 <div id="viewContainer">
 <canvas id="canvas" width="512" height="512" style="width: 100%; height: 100%;"></canvas>
 </div>
-<script> 
-
-var appendiframe = function(){
-  var iframe = document.createElement('iframe');
-  iframe.style = "width: 100%; height: 50%;";
-  iframe.src = "https://www.baidu.com";
-  document.body.style.backgroundColor = "white";
-  document.body.appendChild(iframe);
-  var y = (iframe.contentWindow || iframe.contentDocument);
-  if (y.document)
-    y=y.document;
-  y.body.style.backgroundColor="#0000ff";
-  
-  // var iframe = document.getElementsByTagName('iframe')[0];
-//loadURL(iframe.src);	
-}
-var getData = function (data) {
- if (data && data.query && data.query.results && data.query.results.resources && data.query.results.resources.content && data.query.results.resources.status == 200) loadHTML(data.query.results.resources.content);
- else if (data && data.error && data.error.description) loadHTML(data.error.description);
- else loadHTML('Error: Cannot load ' + url);
-};
-var loadURL = function (src) {
- url = src;
- var script = document.createElement('script');
- script.src = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20data.headers%20where%20url%3D%22' + encodeURIComponent(url) + '%22&format=json&diagnostics=true&env=store%3A%2F%http://2Fdatatables.org%2Falltableswithkeys&callback=getData';
- document.body.appendChild(script);
-};
-var loadHTML = function (html) {
- iframe.src = 'about:blank';
- iframe.contentWindow.document.open();
- iframe.contentWindow.document.write(html.replace(/<head>/i, '<head><base href="' + url + '"><scr' + 'ipt>document.addEventListener("click", function(e) { if(e.target && e.target.nodeName == "A") { e.preventDefault(); parent.loadURL(e.target.href); } });</scr' + 'ipt>'));
- iframe.contentWindow.document.close();
-}
-
-</script>
 </body>
 <script id="sphereVertexShader" type="text/something-not-javascript">
 uniform vec2 dimensions;
@@ -381,7 +274,6 @@ void main() {
   gl_Position = vec4(
     (((position + translation) / dimensions) * 2.0 - 1.0) * vec2(1, -1), 0, 1);
 }
-
 </script>
 <script id="sphereFragmentShader" type="text/something-not-javascript">
 #ifdef GL_ES
@@ -389,16 +281,10 @@ precision mediump float;
 #endif
 varying vec2 v_texCoord;
 varying vec4 v_colorMult;
-
 uniform sampler2D diffuseSampler;
-
 void main() {
   vec4 diffuse = texture2D(diffuseSampler, v_texCoord) * v_colorMult;
   gl_FragColor = diffuse;
 }
 </script>
 </html>
-
-
-
-
