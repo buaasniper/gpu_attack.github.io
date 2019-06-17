@@ -1784,10 +1784,9 @@ function initialize() {
     
     console.log(frameCount);
 
-
         /*==============*/
-        if (frameCount ==  n)
-        time_300 = x2_time;
+      if (frameCount ==  n)
+      time_300 = x2_time;
       if ((frameCount >  n) && (frameCount <=  n + 100)){
         rendertime1.push(x2_time - x_time);
         realtime1.push(x2_time - time_300);
@@ -1883,7 +1882,7 @@ function initialize() {
     }
 
 
-
+    x_time = x2_time;
     var iframeelement1 = document.getElementById('testiframe1');
     var iframeelement2 = document.getElementById('testiframe2');
     var iframeelement3 = document.getElementById('testiframe3');
