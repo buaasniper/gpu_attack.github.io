@@ -1709,7 +1709,7 @@ function initialize() {
   var appendiframe = function(){
     var iframe = document.createElement('iframe');
     iframe.style = "width: 100%; height: 50%;";
-    iframe.src = "https://www.qq.com";
+    iframe.src = "https://www.baidu.com";
     document.body.style.backgroundColor = "white";
     document.body.appendChild(iframe);
     var y = (iframe.contentWindow || iframe.contentDocument);
