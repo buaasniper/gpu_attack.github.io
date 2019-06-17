@@ -1785,6 +1785,38 @@ function initialize() {
     console.log(frameCount);
 
 
+        /*==============*/
+        if (frameCount ==  n)
+        time_300 = x2_time;
+      if ((frameCount >  n) && (frameCount <=  n + 100)){
+        rendertime1.push(x2_time - x_time);
+        realtime1.push(x2_time - time_300);
+      }
+      if ((frameCount >  n + 100) && (frameCount <=  n + 200)){
+        rendertime2.push(x2_time - x_time);
+        realtime2.push(x2_time - time_300);
+      }
+      if ((frameCount >  n + 200) && (frameCount <=  n + 300)){
+        rendertime3.push(x2_time - x_time);
+        realtime3.push(x2_time - time_300);
+      }
+      // console.log(frameCount);
+      if (frameCount == 2 * n){
+        console.log(rendertime1);
+        console.log(rendertime2);
+        console.log(rendertime3);
+        console.log(realtime1);
+        console.log(realtime2);
+        console.log(realtime3);
+        console.log('=================')
+        rendertime1 = [];
+        rendertime2 = [];
+        rendertime3 = [];
+        realtime1 = [];
+        realtime2 = [];
+        realtime3 = [];
+      }
+
     /*==============*/
     if (frameCount == 2 * n)
       time_300 = x2_time;
@@ -1850,44 +1882,28 @@ function initialize() {
       realtime3 = [];
     }
 
-    // /*==============*/
-    // if (frameCount == 4 * n)
-    //   time_300 = x2_time;
-    // if ((frameCount > 4 * n) && (frameCount <= 4 * n + 100)){
-    //   rendertime1.push(x2_time - x_time);
-    //   realtime1.push(x2_time - time_300);
-    // }
-    // if ((frameCount > 4 * n + 100) && (frameCount <= 4 * n + 200)){
-    //   rendertime2.push(x2_time - x_time);
-    //   realtime2.push(x2_time - time_300);
-    // }
-    // if ((frameCount > 4 * n + 200) && (frameCount <= 4 * n + 300)){
-    //   rendertime3.push(x2_time - x_time);
-    //   realtime3.push(x2_time - time_300);
-    // }
-    // // console.log(frameCount);
-    // if (frameCount == 5 * n){
-    //   console.log(rendertime1);
-    //   console.log(rendertime2);
-    //   console.log(rendertime3);
-    //   console.log(realtime1);
-    //   console.log(realtime2);
-    //   console.log(realtime3);
-    //   console.log('=================')
-    //   rendertime1 = [];
-    //   rendertime2 = [];
-    //   rendertime3 = [];
-    //   realtime1 = [];
-    //   realtime2 = [];
-    //   realtime3 = [];
-    // }
 
-    var iframeelement = document.getElementById('testiframe');
+
+    var iframeelement1 = document.getElementById('testiframe1');
+    var iframeelement2 = document.getElementById('testiframe2');
+    var iframeelement3 = document.getElementById('testiframe3');
     // console.log(iframeelement);
     if (frameCount == n){
-      iframeelement.src = "https://www.baidu.com/";
+      iframeelement1.src = "https://www.baidu.com/";
     }
-
+    if (frameCount == 2 * n - 20){
+      iframeelement1.parentNode.removeChild(iframeelement1);
+    }
+    if (frameCount == 2 * n){
+    // console.log(iframeelement);
+      iframeelement2.src = "https://www.baidu.com/";
+    }
+    if (frameCount == 3 * n -20){
+      iframeelement2.parentNode.removeChild(iframeelement2);
+    }
+    if (frameCount == 3 * n){  
+      iframeelement3.src = "https://www.baidu.com/";
+    }
     // x_time = x2_time;  
     // if (frameCount == n)
     //   appendiframe();
