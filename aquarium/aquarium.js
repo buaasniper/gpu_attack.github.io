@@ -1785,122 +1785,125 @@ function initialize() {
     
 
 
-    /*==============*/
-    if (frameCount == 2 * n)
-      time_300 = x2_time;
-    if ((frameCount > 2 * n) && (frameCount <= 2 * n + 100)){
-      rendertime1.push(x2_time - x_time);
-      realtime1.push(x2_time - time_300);
-    }
-    if ((frameCount > 2 * n + 100) && (frameCount <= 2 * n + 200)){
-      rendertime2.push(x2_time - x_time);
-      realtime2.push(x2_time - time_300);
-    }
-    if ((frameCount > 2 * n + 200) && (frameCount <= 2 * n + 300)){
-      rendertime3.push(x2_time - x_time);
-      realtime3.push(x2_time - time_300);
-    }
-    // console.log(frameCount);
-    if (frameCount == 3 * n){
-      console.log(rendertime1);
-      console.log(rendertime2);
-      console.log(rendertime3);
-      console.log(realtime1);
-      console.log(realtime2);
-      console.log(realtime3);
-      console.log('=================')
-      rendertime1 = [];
-      rendertime2 = [];
-      rendertime3 = [];
-      realtime1 = [];
-      realtime2 = [];
-      realtime3 = [];
-    }
+    // /*==============*/
+    // if (frameCount == 2 * n)
+    //   time_300 = x2_time;
+    // if ((frameCount > 2 * n) && (frameCount <= 2 * n + 100)){
+    //   rendertime1.push(x2_time - x_time);
+    //   realtime1.push(x2_time - time_300);
+    // }
+    // if ((frameCount > 2 * n + 100) && (frameCount <= 2 * n + 200)){
+    //   rendertime2.push(x2_time - x_time);
+    //   realtime2.push(x2_time - time_300);
+    // }
+    // if ((frameCount > 2 * n + 200) && (frameCount <= 2 * n + 300)){
+    //   rendertime3.push(x2_time - x_time);
+    //   realtime3.push(x2_time - time_300);
+    // }
+    // // console.log(frameCount);
+    // if (frameCount == 3 * n){
+    //   console.log(rendertime1);
+    //   console.log(rendertime2);
+    //   console.log(rendertime3);
+    //   console.log(realtime1);
+    //   console.log(realtime2);
+    //   console.log(realtime3);
+    //   console.log('=================')
+    //   rendertime1 = [];
+    //   rendertime2 = [];
+    //   rendertime3 = [];
+    //   realtime1 = [];
+    //   realtime2 = [];
+    //   realtime3 = [];
+    // }
 
 
-    /*==============*/
-    if (frameCount == 3 * n)
-      time_300 = x2_time;
-    if ((frameCount > 3 * n) && (frameCount <= 3 * n + 100)){
-      rendertime1.push(x2_time - x_time);
-      realtime1.push(x2_time - time_300);
-    }
-    if ((frameCount > 3 * n + 100) && (frameCount <= 3 * n + 200)){
-      rendertime2.push(x2_time - x_time);
-      realtime2.push(x2_time - time_300);
-    }
-    if ((frameCount > 3 * n + 200) && (frameCount <= 3 * n + 300)){
-      rendertime3.push(x2_time - x_time);
-      realtime3.push(x2_time - time_300);
-    }
-    // console.log(frameCount);
-    if (frameCount == 4 * n){
-      console.log(rendertime1);
-      console.log(rendertime2);
-      console.log(rendertime3);
-      console.log(realtime1);
-      console.log(realtime2);
-      console.log(realtime3);
-      console.log('======finish===========')
-      rendertime1 = [];
-      rendertime2 = [];
-      rendertime3 = [];
-      realtime1 = [];
-      realtime2 = [];
-      realtime3 = [];
-    }
+    // /*==============*/
+    // if (frameCount == 3 * n)
+    //   time_300 = x2_time;
+    // if ((frameCount > 3 * n) && (frameCount <= 3 * n + 100)){
+    //   rendertime1.push(x2_time - x_time);
+    //   realtime1.push(x2_time - time_300);
+    // }
+    // if ((frameCount > 3 * n + 100) && (frameCount <= 3 * n + 200)){
+    //   rendertime2.push(x2_time - x_time);
+    //   realtime2.push(x2_time - time_300);
+    // }
+    // if ((frameCount > 3 * n + 200) && (frameCount <= 3 * n + 300)){
+    //   rendertime3.push(x2_time - x_time);
+    //   realtime3.push(x2_time - time_300);
+    // }
+    // // console.log(frameCount);
+    // if (frameCount == 4 * n){
+    //   console.log(rendertime1);
+    //   console.log(rendertime2);
+    //   console.log(rendertime3);
+    //   console.log(realtime1);
+    //   console.log(realtime2);
+    //   console.log(realtime3);
+    //   console.log('======finish===========')
+    //   rendertime1 = [];
+    //   rendertime2 = [];
+    //   rendertime3 = [];
+    //   realtime1 = [];
+    //   realtime2 = [];
+    //   realtime3 = [];
+    // }
 
-    /*==============*/
-    if (frameCount == 4 * n)
-      time_300 = x2_time;
-    if ((frameCount > 4 * n) && (frameCount <= 4 * n + 100)){
-      rendertime1.push(x2_time - x_time);
-      realtime1.push(x2_time - time_300);
-    }
-    if ((frameCount > 4 * n + 100) && (frameCount <= 4 * n + 200)){
-      rendertime2.push(x2_time - x_time);
-      realtime2.push(x2_time - time_300);
-    }
-    if ((frameCount > 4 * n + 200) && (frameCount <= 4 * n + 300)){
-      rendertime3.push(x2_time - x_time);
-      realtime3.push(x2_time - time_300);
-    }
-    // console.log(frameCount);
-    if (frameCount == 5 * n){
-      console.log(rendertime1);
-      console.log(rendertime2);
-      console.log(rendertime3);
-      console.log(realtime1);
-      console.log(realtime2);
-      console.log(realtime3);
-      console.log('=================')
-      rendertime1 = [];
-      rendertime2 = [];
-      rendertime3 = [];
-      realtime1 = [];
-      realtime2 = [];
-      realtime3 = [];
-    }
+    // /*==============*/
+    // if (frameCount == 4 * n)
+    //   time_300 = x2_time;
+    // if ((frameCount > 4 * n) && (frameCount <= 4 * n + 100)){
+    //   rendertime1.push(x2_time - x_time);
+    //   realtime1.push(x2_time - time_300);
+    // }
+    // if ((frameCount > 4 * n + 100) && (frameCount <= 4 * n + 200)){
+    //   rendertime2.push(x2_time - x_time);
+    //   realtime2.push(x2_time - time_300);
+    // }
+    // if ((frameCount > 4 * n + 200) && (frameCount <= 4 * n + 300)){
+    //   rendertime3.push(x2_time - x_time);
+    //   realtime3.push(x2_time - time_300);
+    // }
+    // // console.log(frameCount);
+    // if (frameCount == 5 * n){
+    //   console.log(rendertime1);
+    //   console.log(rendertime2);
+    //   console.log(rendertime3);
+    //   console.log(realtime1);
+    //   console.log(realtime2);
+    //   console.log(realtime3);
+    //   console.log('=================')
+    //   rendertime1 = [];
+    //   rendertime2 = [];
+    //   rendertime3 = [];
+    //   realtime1 = [];
+    //   realtime2 = [];
+    //   realtime3 = [];
+    // }
 
 
 
-    x_time = x2_time;  
-    if (frameCount == n)
-      appendiframe();
-     if(frameCount == 2 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.baidu.com/";
-    }
+    // x_time = x2_time;  
+    // if (frameCount == n)
+    //   appendiframe();
+    //  if(frameCount == 2 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.baidu.com/";
+    // }
 
-    if(frameCount == 3 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.baidu.com/";
-    }
+    // if(frameCount == 3 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.baidu.com/";
+    // }
 
-    if(frameCount == 4 * n){
-      var iframe = document.getElementsByTagName('iframe')[0];
-      iframe.src = "https://www.baidu.com/";
-    }
+    // if(frameCount == 4 * n){
+    //   var iframe = document.getElementsByTagName('iframe')[0];
+    //   iframe.src = "https://www.baidu.com/";
+    // }
+
+
+
     // if(frameCount == 4 * n){
     //   var iframe = document.getElementsByTagName('iframe')[0];
     //   iframe.src = "https://www.qq.com/";
