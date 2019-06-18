@@ -96,8 +96,8 @@ function startup() {
   
   var tem_mov = 0.002;
   for (i = 0; i < 100000; i++){
-    var tem_x = -1 + Math.random() * 2;
-    var tem_y = -1 + Math.random() * 2;
+    var tem_x = (-1 + Math.random() * 2) * 0.5;
+    var tem_y = (-1 + Math.random() * 2) * 0.5;
     vertexArray_tem.push(tem_x - tem_mov, tem_y + tem_mov, tem_x + tem_mov, tem_y + tem_mov, tem_x + tem_mov, tem_y - tem_mov, tem_x - tem_mov, tem_y + tem_mov, tem_x + tem_mov, tem_y - tem_mov, tem_x - tem_mov, tem_y - tem_mov);
   }
 

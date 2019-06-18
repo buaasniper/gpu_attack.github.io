@@ -1782,7 +1782,7 @@ function initialize() {
     
     var x2_time = performance.now();
     
-    console.log(frameCount);
+    // console.log(frameCount);
 
         /*==============*/
       if (frameCount ==  n)
