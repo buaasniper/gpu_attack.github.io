@@ -1789,24 +1789,27 @@ function initialize() {
         /*==============*/
       if (frameCount ==  n)
         time_300 = x2_time;
-      if (frameCount ==  n + 100)
-        time_300 = x2_time;
-      if (frameCount ==  n + 200)
-        time_300 = x2_time;
-      if (frameCount ==  n + 300)
-        time_300 = x2_time;  
+     
+
+ 
       if ((frameCount >  n) && (frameCount <=  n + 100)){
         rendertime1.push(x2_time - x_time);
         realtime1.push(x2_time - time_300);
       }
+      if (frameCount ==  n + 100)
+              time_300 = x2_time;
       if ((frameCount >  n + 100) && (frameCount <=  n + 200)){
         rendertime2.push(x2_time - x_time);
         realtime2.push(x2_time - time_300);
       }
+      if (frameCount ==  n + 200)
+        time_300 = x2_time;
       if ((frameCount >  n + 200) && (frameCount <=  n + 300)){
         rendertime3.push(x2_time - x_time);
         realtime3.push(x2_time - time_300);
       }
+      if (frameCount ==  n + 300)
+        time_300 = x2_time; 
       if ((frameCount >  n + 300) && (frameCount <=  n + 400)){
         rendertime4.push(x2_time - x_time);
         realtime4.push(x2_time - time_300);
