@@ -46,7 +46,7 @@ var g_numSettingElements = {};
 var g_scenes = {};  // each of the models
 var g_sceneGroups = {};  // the placement of the models
 var g_fog = true;
-var g_numFish = [1, 100, 20000, 1000, 5000, 10000, 15000, 20000, 25000, 30000];
+var g_numFish = [1, 100, 35000, 1000, 5000, 10000, 15000, 20000, 25000, 30000];
 
 var g_stereoDemoActive = false;
 var g_shadersNeedUpdate = false; // Set to true whenever the state has changed so that shaders may need to be changed.
@@ -1746,6 +1746,10 @@ function initialize() {
     }
     then = now;
 
+    performance.mark("2");
+    performance.measure(elapsedTime * 1000, "1", "2");
+    performance.mark("1");
+
     if (g.net.sync) {
       clock = now * g.globals.speed;
       eyeClock = now * g.globals.eyeSpeed;
@@ -1992,7 +1996,7 @@ function initialize() {
       if (!g.options.normalMaps.enabled) { g.options.normalMaps.toggle(); }
       if (!g.options.reflection.enabled) { g.options.reflection.toggle(); }
     }
-
+    performance.mark("1");
     if (g_vrDisplay) {
       g_requestId = g_vrDisplay.requestAnimationFrame(onAnimationFrame);
       g_vrDisplay.getFrameData(g_frameData);
@@ -2095,7 +2099,7 @@ function initialize() {
       renderMono();
     }
   }
-
+  performance.mark("1");
   onAnimationFrame();
   return true;
 }
