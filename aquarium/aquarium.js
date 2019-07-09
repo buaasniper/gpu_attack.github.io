@@ -31,6 +31,8 @@ function useMultiviewForStereo() {
 }
 
 // globals
+var time_300;
+var time_onload;
 var gl;                   // the gl context.
 var multiview;            // multiview extension.
 var canvas;               // the canvas
@@ -44,7 +46,7 @@ var g_numSettingElements = {};
 var g_scenes = {};  // each of the models
 var g_sceneGroups = {};  // the placement of the models
 var g_fog = true;
-var g_numFish = [1, 100, 5000, 1000, 5000, 10000, 15000, 20000, 25000, 30000];
+var g_numFish = [1, 100, 20000, 1000, 5000, 10000, 15000, 20000, 25000, 30000];
 
 var g_stereoDemoActive = false;
 var g_shadersNeedUpdate = false; // Set to true whenever the state has changed so that shaders may need to be changed.
@@ -1729,9 +1731,11 @@ function initialize() {
   var realtime2 = [];
   var realtime3 = [];
   var realtime4 = [];
-  var time_300;
+  
   var n = 200 ;
 
+
+  
   function onAnimationFrame() {
     var now = theClock.getTime();
     var elapsedTime;
