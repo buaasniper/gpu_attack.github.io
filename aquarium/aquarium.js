@@ -1912,26 +1912,26 @@ function initialize() {
     var iframeelement4 = document.getElementById('testiframe4');
     // console.log(iframeelement);
     if (frameCount == n){
-      iframeelement1.src = "https://www.baidu.com/";
+      iframeelement1.src = "https://www.qq.com/";
     }
     if (frameCount == n + 90){
       iframeelement1.parentNode.removeChild(iframeelement1);
     }
     if (frameCount == n + 100){
     // console.log(iframeelement);
-      iframeelement2.src = "https://www.baidu.com/";
+      iframeelement2.src = "https://www.qq.com/";
     }
     if (frameCount == n + 190){
       iframeelement2.parentNode.removeChild(iframeelement2);
     }
     if (frameCount == n + 200){  
-      iframeelement3.src = "https://www.baidu.com/";
+      iframeelement3.src = "https://www.qq.com/";
     }
     if (frameCount == n + 290){
       iframeelement3.parentNode.removeChild(iframeelement3);
     }
     if (frameCount == n + 300){  
-      iframeelement4.src = "https://www.baidu.com/";
+      iframeelement4.src = "https://www.qq.com/";
     }
     // x_time = x2_time;  
     // if (frameCount == n)
