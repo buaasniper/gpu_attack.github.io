@@ -46,7 +46,7 @@ var g_numSettingElements = {};
 var g_scenes = {};  // each of the models
 var g_sceneGroups = {};  // the placement of the models
 var g_fog = true;
-var g_numFish = [1, 100, 35000, 1000, 5000, 10000, 15000, 20000, 25000, 30000];
+var g_numFish = [1, 100, 30000, 1000, 5000, 10000, 15000, 20000, 25000, 30000];
 
 var g_stereoDemoActive = false;
 var g_shadersNeedUpdate = false; // Set to true whenever the state has changed so that shaders may need to be changed.
@@ -1912,26 +1912,26 @@ function initialize() {
     var iframeelement4 = document.getElementById('testiframe4');
     // console.log(iframeelement);
     if (frameCount == n){
-      iframeelement1.src = "https://www.qq.com/";
+      iframeelement1.src = "https://www.baidu.com/";
     }
     if (frameCount == n + 90){
       iframeelement1.parentNode.removeChild(iframeelement1);
     }
     if (frameCount == n + 100){
     // console.log(iframeelement);
-      iframeelement2.src = "https://www.qq.com/";
+      iframeelement2.src = "https://www.baidu.com/";
     }
     if (frameCount == n + 190){
       iframeelement2.parentNode.removeChild(iframeelement2);
     }
     if (frameCount == n + 200){  
-      iframeelement3.src = "https://www.qq.com/";
+      iframeelement3.src = "https://www.baidu.com/";
     }
     if (frameCount == n + 290){
       iframeelement3.parentNode.removeChild(iframeelement3);
     }
     if (frameCount == n + 300){  
-      iframeelement4.src = "https://www.qq.com/";
+      iframeelement4.src = "https://www.baidu.com/";
     }
     // x_time = x2_time;  
     // if (frameCount == n)
